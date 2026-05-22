@@ -1,5 +1,6 @@
-### 3. Paquetes de Terceros Recomendados
-Con el fin de asegurar la robustez, seguridad y escalabilidad del backend, hemos seleccionado un conjunto de librerías del ecosistema de Go que se alinean con los estándares de la industria y agilizan nuestro desarrollo incremental:
+# Paquetes de Terceros Recomendados
+---
+### Con el fin de asegurar la robustez, seguridad y escalabilidad del backend, hemos seleccionado un conjunto de librerías del ecosistema de Go que se alinean con los estándares de la industria y agilizan nuestro desarrollo incremental:
 
 * **Gin Web Framework**
   * **Sitio Oficial / Repositorio:** [gin-gonic.com](https://gin-gonic.com/) o `github.com/gin-gonic/gin`
