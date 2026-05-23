@@ -1,0 +1,56 @@
+# Concurrencia en el Sistema
+
+## Implementación de concurrencia en Go
+
+El Sistema de Gestión de Libros Electrónicos implementará concurrencia utilizando herramientas nativas de Golang como:
+
+- goroutines
+- channels
+- sincronización de procesos
+
+La concurrencia permitirá que múltiples usuarios puedan interactuar simultáneamente con la plataforma sin afectar el rendimiento del sistema.
+
+---
+
+## Uso de Goroutines
+
+Las goroutines permitirán ejecutar procesos en segundo plano de forma ligera y eficiente.
+
+Serán utilizadas en tareas como:
+
+- generación de reportes
+- procesamiento de descargas
+- validación de préstamos
+- envío de notificaciones
+- registro de actividades
+
+Gracias a las goroutines, el sistema podrá ejecutar múltiples operaciones al mismo tiempo optimizando recursos del servidor.
+
+---
+
+## Uso de Channels
+
+Los channels permitirán la comunicación segura entre procesos concurrentes.
+
+Se utilizarán para:
+
+- sincronización de tareas
+- transferencia de información entre módulos
+- control de procesos simultáneos
+- gestión de eventos internos
+
+Esto ayudará a evitar conflictos de datos y mejorar la estabilidad del sistema.
+
+---
+
+## Beneficios de la concurrencia
+
+La implementación de concurrencia permitirá:
+
+- mejorar el rendimiento general
+- reducir tiempos de respuesta
+- soportar múltiples usuarios simultáneos
+- optimizar recursos del servidor
+- mejorar la experiencia del usuario
+
+La concurrencia representa una de las principales ventajas de Golang para aplicaciones backend modernas y escalables.
