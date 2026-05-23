@@ -1,4 +1,5 @@
 ARQUITECTURA DEL SISTEMA DE GESTIÓN DE LIBROS ELECTRÓNICOS
+
 El Sistema de Gestión de Libros Electrónicos será desarrollado utilizando el lenguaje de programación Go, implementando una arquitectura por capas que permita mantener el sistema organizado, seguro, escalable y fácil de mantener.
 La arquitectura estará basada en el siguiente flujo:
 Cliente
@@ -12,8 +13,10 @@ Servicios
 Repositorios
    ↓
 Base de Datos
+
 Este tipo de arquitectura permite dividir el sistema en componentes organizados, donde cada capa tiene responsabilidades específicas. Gracias a esta separación, el sistema será más fácil de desarrollar, mantener, escalar y actualizar.
 La arquitectura también ayuda a mejorar la seguridad, reutilización del código y organización interna del proyecto, permitiendo que cada componente trabaje de forma independiente pero conectada con los demás.
+
 ARQUITECTURA GENERAL EN GO
 En Go el proyecto se organizará mediante paquetes y carpetas estructuradas para mantener un código limpio y modular.
 La estructura del proyecto será similar a la siguiente:
