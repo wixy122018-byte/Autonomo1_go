@@ -18,6 +18,7 @@ Este tipo de arquitectura permite dividir el sistema en componentes organizados,
 La arquitectura también ayuda a mejorar la seguridad, reutilización del código y organización interna del proyecto, permitiendo que cada componente trabaje de forma independiente pero conectada con los demás.
 
 ARQUITECTURA GENERAL EN GO
+
 En Go el proyecto se organizará mediante paquetes y carpetas estructuradas para mantener un código limpio y modular.
 La estructura del proyecto será similar a la siguiente:
 /proyecto-libros
@@ -38,9 +39,11 @@ Cada carpeta tendrá una función específica dentro de la arquitectura.
 
 
 1. CAPA CLIENTE
+
 La capa cliente corresponde a la interfaz visual del sistema, es decir, la parte con la que interactúan directamente los usuarios. Esta capa es responsable de mostrar información y permitir que las personas utilicen las funcionalidades disponibles dentro de la plataforma.
 Aquí se encuentran todas las pantallas, formularios, botones y menús que permiten navegar dentro del sistema.
 Usuarios que interactúan con esta capa
+
 El sistema tendrá distintos tipos de usuarios:
 Administrador	Bibliotecario	Lector o estudiante
 Tiene control total del sistema:
