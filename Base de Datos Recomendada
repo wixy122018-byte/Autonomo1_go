@@ -1,0 +1,46 @@
+# Base de Datos Recomendada
+
+## PostgreSQL como base de datos principal
+
+Para el desarrollo del Sistema de Gestión de Libros Electrónicos se recomienda utilizar PostgreSQL como sistema gestor de base de datos principal debido a su estabilidad, seguridad y alto rendimiento en aplicaciones empresariales.
+
+El sistema almacenará información relacionada con:
+
+- libros electrónicos
+- usuarios
+- préstamos digitales
+- historial de descargas
+- reportes
+- autenticación y permisos
+
+---
+
+## Ventajas de PostgreSQL en el proyecto
+
+### Seguridad
+
+PostgreSQL ofrece mecanismos avanzados de seguridad y control de acceso que permiten proteger la información de los usuarios y los archivos digitales.
+
+### Escalabilidad
+
+La base de datos puede crecer conforme aumente la cantidad de usuarios, libros y préstamos sin afectar significativamente el rendimiento del sistema.
+
+### Integración con Go
+
+PostgreSQL posee excelente compatibilidad con Golang mediante librerías como:
+
+- GORM
+- pq
+- pgx
+
+Esto facilita la conexión entre el backend y la base de datos.
+
+### Soporte para relaciones complejas
+
+El sistema manejará múltiples relaciones entre entidades como:
+
+- usuarios y préstamos
+- libros y categorías
+- usuarios y descargas
+
+PostgreSQL permite gestionar estas relaciones de manera eficiente mediante claves foráneas y consultas relacionales.
