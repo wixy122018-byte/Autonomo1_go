@@ -28,18 +28,30 @@ ARQUITECTURA GENERAL EN GO
 
 En Go el proyecto se organizará mediante paquetes y carpetas estructuradas para mantener un código limpio y modular.
 La estructura del proyecto será similar a la siguiente:
+
 /proyecto-libros
 │
+
 ├── main.go
+
 │
+
 ├── controllers/
+
 ├── services/
+
 ├── repositories/
+
 ├── models/
+
 ├── routes/
+
 ├── database/
+
 ├── middleware/
+
 ├── utils/
+
 └── config/
 
 Cada carpeta tendrá una función específica dentro de la arquitectura.
