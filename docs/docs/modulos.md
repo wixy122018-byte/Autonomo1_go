@@ -1,0 +1,426 @@
+MÓDULOS DEL SISTEMA DE GESTIÓN DE LIBROS ELECTRÓNICOS DESARROLLADO EN GO
+El Sistema de Gestión de Libros Electrónicos será desarrollado utilizando Go bajo una arquitectura modular. Esto significa que el sistema estará dividido en diferentes módulos independientes, donde cada uno tendrá responsabilidades específicas y trabajará de manera organizada con los demás componentes.
+En Go, los módulos permiten mantener el proyecto estructurado, reutilizable y fácil de mantener. Además, gracias a la organización por paquetes que ofrece Go, cada módulo podrá separarse en carpetas y archivos específicos, facilitando el desarrollo colaborativo y la escalabilidad futura del sistema.
+Cada módulo tendrá:
+•	Sus propios controladores. 
+•	Servicios. 
+•	Repositorios. 
+•	Modelos. 
+•	Rutas. 
+•	Validaciones. 
+Esto permitirá mantener un código limpio y profesional.
+
+ESTRUCTURA GENERAL DE LOS MÓDULOS EN GO
+La organización del proyecto en Go será similar a la siguiente:
+/proyecto-libros
+│
+├── controllers/
+├── services/
+├── repositories/
+├── models/
+├── routes/
+├── middleware/
+├── database/
+├── config/
+└── utils/
+Cada módulo utilizará esta estructura internamente.
+Por ejemplo:
+/controllers
+    ├── usuario_controller.go
+    ├── libro_controller.go
+    ├── prestamo_controller.go
+
+
+
+1. MÓDULO DE GESTIÓN DE USUARIOS
+Este módulo será responsable de administrar toda la información relacionada con los usuarios del sistema.
+Es uno de los módulos más importantes porque controla el acceso, autenticación y permisos dentro de la plataforma.
+Objetivo del módulo
+Permitir que los usuarios puedan:
+•	Registrarse. 
+•	Iniciar sesión. 
+•	Gestionar perfiles. 
+•	Recuperar contraseñas. 
+•	Acceder según permisos asignados. 
+
+Funcionamiento del módulo en Go
+En Go este módulo estará dividido en varias capas:
+Usuario Controller
+        ↓
+Usuario Service
+        ↓
+Usuario Repository
+        ↓
+MySQL
+
+Componentes internos del módulo
+Usuario Controller
+Se encargará de:
+•	Recibir solicitudes HTTP. 
+•	Validar datos básicos. 
+•	Enviar respuestas JSON. 
+Ejemplo:
+•	Registro de usuario. 
+•	Login. 
+•	Actualización de perfil. 
+
+
+
+Usuario Service
+Aquí estará toda la lógica del negocio relacionada con usuarios.
+Por ejemplo:
+•	Verificar si el correo ya existe. 
+•	Encriptar contraseñas. 
+•	Validar credenciales. 
+•	Generar tokens JWT. 
+
+Usuario Repository
+Será responsable de:
+•	Guardar usuarios. 
+•	Consultar información. 
+•	Actualizar registros. 
+•	Eliminar usuarios. 
+
+Funciones principales del módulo
+Registro de usuarios
+Cuando una persona se registre:
+1.	El controlador recibe datos. 
+2.	El servicio valida información. 
+3.	Se cifra la contraseña. 
+4.	El repositorio guarda datos en MySQL. 
+
+Inicio de sesión
+El sistema:
+1.	Busca el usuario. 
+2.	Verifica contraseña. 
+3.	Genera token de autenticación. 
+4.	Devuelve acceso al cliente. 
+
+Seguridad implementada
+En Go se utilizarán librerías como:
+•	bcrypt → para cifrado. 
+•	JWT → autenticación. 
+Esto garantiza:
+•	Seguridad. 
+•	Protección de datos. 
+•	Control de acceso. 
+
+Importancia del módulo
+Este módulo controla:
+•	Seguridad del sistema. 
+•	Accesos. 
+•	Roles de usuarios. 
+•	Protección de información. 
+
+2. MÓDULO DE GESTIÓN DE LIBROS
+Este módulo administra todo el catálogo digital de libros electrónicos.
+Es considerado el núcleo principal de la biblioteca virtual.
+
+Objetivo del módulo
+Permitir:
+•	Registrar libros. 
+•	Actualizar información. 
+•	Organizar categorías. 
+•	Gestionar archivos digitales. 
+
+Arquitectura interna del módulo
+Libro Controller
+        ↓
+Libro Service
+        ↓
+Libro Repository
+        ↓
+MySQL
+
+
+
+Información gestionada
+Cada libro almacenará:
+•	Título. 
+•	Autor. 
+•	Categoría. 
+•	Editorial. 
+•	ISBN. 
+•	Año de publicación. 
+•	Archivo PDF o EPUB. 
+•	Disponibilidad. 
+
+Funcionamiento del módulo
+Registro de libros
+Cuando el bibliotecario registra un libro:
+1.	El controlador recibe información. 
+2.	El servicio valida datos. 
+3.	Se verifica formato del archivo. 
+4.	El repositorio guarda información. 
+5.	El archivo se almacena en el servidor. 
+
+Actualización de libros
+El sistema permitirá:
+•	Editar títulos. 
+•	Cambiar categorías. 
+•	Reemplazar archivos. 
+•	Modificar disponibilidad. 
+
+Eliminación de libros
+El administrador podrá:
+•	Eliminar registros. 
+•	Desactivar libros. 
+•	Limpiar información obsoleta. 
+
+
+
+Tecnologías utilizadas en Go
+Se podrán usar:
+•	Gin → API REST. 
+•	GORM → conexión con MySQL. 
+•	FileSystem de Go → manejo de archivos. 
+Importancia del módulo
+Permite:
+•	Organizar biblioteca digital. 
+•	Gestionar contenido. 
+•	Facilitar búsquedas. 
+•	Administrar archivos electrónicos. 
+
+3. MÓDULO DE BÚSQUEDA DE LIBROS
+Este módulo tiene como objetivo permitir búsquedas rápidas y eficientes dentro del sistema.
+Objetivo
+Facilitar a los usuarios la localización de libros electrónicos mediante filtros y consultas avanzadas.
+Funcionamiento en Go
+Busqueda Controller
+        ↓
+Busqueda Service
+        ↓
+Busqueda Repository
+        ↓
+MySQL
+
+Funciones principales
+Búsqueda por título
+Permite buscar libros mediante palabras clave.
+Búsqueda por autor
+Localiza libros relacionados con autores específicos.
+
+
+Búsqueda por categorías
+Ejemplos:
+•	Programación. 
+•	Redes. 
+•	Matemáticas. 
+•	Literatura. 
+
+Filtros avanzados
+Permite filtrar por:
+•	Año. 
+•	Disponibilidad. 
+•	Popularidad. 
+•	Categoría. 
+
+Procesamiento en Go
+El servicio de búsqueda:
+1.	Recibe parámetros. 
+2.	Construye consultas SQL. 
+3.	Filtra información. 
+4.	Devuelve resultados JSON. 
+
+Ventajas del módulo
+•	Mejora experiencia del usuario. 
+•	Reduce tiempo de búsqueda. 
+•	Optimiza navegación. 
+
+4. MÓDULO DE PRÉSTAMOS ELECTRÓNICOS
+Este módulo controla todo el proceso de préstamos digitales.
+Es uno de los procesos más importantes del sistema.
+
+
+
+
+
+Objetivo
+Administrar:
+•	Solicitudes de préstamo. 
+•	Disponibilidad. 
+•	Devoluciones. 
+•	Historiales. 
+
+Arquitectura interna
+Prestamo Controller
+         ↓
+Prestamo Service
+         ↓
+Prestamo Repository
+         ↓
+MySQL
+
+Funcionamiento del préstamo en Go
+Cuando un usuario solicita un libro:
+Paso 1
+El controlador recibe la solicitud.
+Paso 2
+El servicio verifica:
+•	Existencia del usuario. 
+•	Disponibilidad del libro. 
+•	Límite de préstamos. 
+Paso 3
+El repositorio registra información en MySQL.
+Paso 4
+El sistema actualiza disponibilidad del libro.
+
+
+
+
+Funciones principales
+Solicitud de préstamos
+•	Permite solicitar libros digitales.
+Gestión de devoluciones
+•	Controla finalización de préstamos.
+Historial
+•	Guarda todos los préstamos realizados.
+
+Restricciones
+•	Controla límites por usuario.
+
+Importancia del módulo
+Permite automatizar procesos bibliotecarios y mantener control sobre la circulación digital de libros.
+
+5. MÓDULO DE RESERVAS
+Este módulo administra reservas de libros ocupados.
+
+Objetivo
+Permitir que los usuarios puedan reservar libros no disponibles temporalmente.
+Funcionamiento
+Reserva Controller
+        ↓
+Reserva Service
+        ↓
+Reserva Repository
+        ↓
+MySQL
+
+
+
+Proceso de reserva
+1.	El usuario solicita reserva. 
+2.	El sistema verifica disponibilidad. 
+3.	Registra la reserva. 
+4.	Guarda orden de espera. 
+5.	Notifica disponibilidad futura. 
+
+Funciones principales
+Registro de reservas
+•	Permite guardar solicitudes.
+Lista de espera
+•	Organiza usuarios automáticamente.
+Notificaciones
+•	Informa disponibilidad.
+Cancelaciones
+•	Permite eliminar reservas.
+
+Importancia
+Evita conflictos entre usuarios y mejora administración de recursos digitales.
+
+6. MÓDULO DE REPORTES Y ESTADÍSTICAS
+Este módulo genera información administrativa y estadística.
+Objetivo
+Permitir análisis y control del funcionamiento del sistema.
+
+
+
+
+
+
+
+Arquitectura
+Reporte Controller
+        ↓
+Reporte Service
+        ↓
+Reporte Repository
+        ↓
+MySQL
+
+Funciones principales
+Reportes de préstamos
+•	Muestra historial de préstamos realizados.
+Reportes de usuarios
+•	Identifica usuarios más activos.
+Reportes de libros
+•	Muestra libros más consultados.
+Estadísticas generales
+•	Genera métricas del sistema.
+Exportación de información
+El sistema podrá generar:
+•	PDF. 
+•	Excel. 
+•	CSV. 
+
+Procesamiento en Go
+Go permitirá:
+•	Generar archivos rápidamente. 
+•	Procesar grandes cantidades de datos. 
+•	Optimizar consultas. 
+
+
+
+Importancia
+Facilita:
+•	Toma de decisiones. 
+•	Administración. 
+•	Supervisión del sistema. 
+
+7. MÓDULO DE SEGURIDAD
+Este módulo protege toda la información del sistema.
+Es fundamental debido a que el sistema manejará:
+•	Usuarios. 
+•	Contraseñas. 
+•	Archivos digitales. 
+•	Información académica. 
+
+Objetivo
+Garantizar:
+•	Confidencialidad. 
+•	Integridad. 
+•	Disponibilidad. 
+Arquitectura
+Middleware de Seguridad
+            ↓
+Servicios de Autenticación
+            ↓
+Control de Acceso
+
+Funciones principales
+Autenticación JWT
+Go utilizará JWT para:
+•	Validar sesiones. 
+•	Generar tokens. 
+•	Proteger rutas. 
+
+
+Cifrado de contraseñas
+Se utilizará bcrypt para almacenar contraseñas seguras.
+Middleware de autenticación
+Permitirá:
+•	Proteger endpoints. 
+•	Validar permisos. 
+•	Bloquear accesos indebidos. 
+Auditoría
+El sistema registrará:
+•	Inicios de sesión. 
+•	Errores. 
+•	Actividades críticas. 
+Importancia del módulo
+Protege:
+•	Información. 
+•	Usuarios. 
+•	Integridad del sistema. 
+•	Acceso seguro. 
+
+CONCLUSIÓN
+La implementación modular utilizando Go permitirá desarrollar un Sistema de Gestión de Libros Electrónicos altamente organizado, eficiente y escalable.
+La separación por módulos facilitará:
+•	Desarrollo colaborativo. 
+•	Mantenimiento. 
+•	Seguridad. 
+•	Reutilización de código. 
+•	Escalabilidad futura. 
+Además, el uso de tecnologías como Gin, GORM y MySQL permitirá construir una aplicación moderna, rápida y segura para la gestión de bibliotecas digitales.
+
