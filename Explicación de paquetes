@@ -1,0 +1,153 @@
+# Explicación de Paquetes
+
+## cmd/
+
+Este paquete contiene el punto de entrada principal del sistema mediante el archivo `main.go`.
+
+Su función es:
+
+- iniciar el servidor
+- cargar configuraciones
+- conectar la base de datos
+- ejecutar las rutas principales del sistema
+
+---
+
+## internal/config/
+
+Este paquete administra toda la configuración del sistema.
+
+Permite:
+
+- cargar variables de entorno
+- gestionar configuraciones del servidor
+- administrar claves JWT
+- configurar conexiones con PostgreSQL
+
+---
+
+## internal/models/
+
+Contiene las estructuras principales del sistema utilizando structs de Go.
+
+Aquí se modelan entidades como:
+
+- usuarios
+- libros
+- préstamos
+- descargas
+- reportes
+
+Estas estructuras representan las tablas de la base de datos.
+
+---
+
+## internal/handlers/
+
+Este paquete gestiona las solicitudes HTTP de la API REST.
+
+Sus funciones son:
+
+- recibir peticiones del cliente
+- validar información
+- enviar respuestas JSON
+- controlar errores del sistema
+
+---
+
+## internal/services/
+
+El paquete services contiene la lógica de negocio del sistema.
+
+Aquí se implementan procesos como:
+
+- validación de préstamos
+- control de disponibilidad de libros
+- generación de reportes
+- autenticación de usuarios
+
+Esta capa conecta los handlers con los repositories.
+
+---
+
+## internal/repositories/
+
+Este paquete maneja el acceso a la base de datos.
+
+Permite realizar:
+
+- operaciones CRUD
+- consultas SQL
+- inserción de registros
+- actualización de datos
+- eliminación de información
+
+Se utilizará GORM para facilitar la comunicación con PostgreSQL.
+
+---
+
+## internal/middleware/
+
+Contiene middlewares para la seguridad y control de acceso del sistema.
+
+Permite implementar:
+
+- autenticación JWT
+- validación de permisos
+- manejo de errores
+- logging
+- control de sesiones
+
+---
+
+## internal/routes/
+
+Este paquete organiza las rutas de la API REST.
+
+Aquí se definirán endpoints como:
+
+- /login
+- /usuarios
+- /libros
+- /prestamos
+- /descargas
+
+Las rutas estarán separadas por módulos para mantener orden en el proyecto.
+
+---
+
+## internal/database/
+
+Este paquete administra la conexión principal con PostgreSQL.
+
+Sus funciones son:
+
+- abrir conexiones
+- verificar estado de la base de datos
+- ejecutar migraciones
+- gestionar transacciones
+
+---
+
+## pkg/
+
+El paquete pkg almacenará utilidades reutilizables para distintos módulos del sistema.
+
+Ejemplos:
+
+- validadores
+- generadores de tokens
+- manejo de fechas
+- funciones auxiliares
+- herramientas de cifrado
+
+---
+
+## docs/
+
+Este directorio contendrá documentación técnica del proyecto como:
+
+- diagramas
+- documentación API
+- manuales
+- reportes técnicos
