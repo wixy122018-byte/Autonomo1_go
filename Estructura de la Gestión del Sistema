@@ -1,0 +1,48 @@
+# Estructura de la Gestión del Sistema
+
+## Organización de paquetes del sistema
+
+El Sistema de Gestión de Libros Electrónicos utilizará una arquitectura modular organizada mediante paquetes en Golang con el objetivo de mantener el código limpio, escalable y fácil de mantener.
+
+La estructura del proyecto estará dividida en diferentes capas, donde cada paquete tendrá una responsabilidad específica dentro del sistema.
+
+La organización modular permitirá separar correctamente:
+
+- lógica de negocio
+- acceso a datos
+- rutas
+- autenticación
+- configuración
+- modelos
+- servicios
+- controladores
+
+Esto facilitará el trabajo colaborativo y permitirá realizar mantenimiento o ampliaciones futuras de manera más eficiente.
+
+---
+
+# Estructura general del proyecto
+
+```text
+sistema-libros-electronicos/
+│
+├── cmd/
+│   └── main.go
+│
+├── internal/
+│   ├── config/
+│   ├── models/
+│   ├── handlers/
+│   ├── services/
+│   ├── repositories/
+│   ├── middleware/
+│   ├── routes/
+│   └── database/
+│
+├── pkg/
+│
+├── docs/
+│
+├── .env
+├── go.mod
+└── go.sum
