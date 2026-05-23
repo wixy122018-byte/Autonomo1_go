@@ -1,0 +1,30 @@
+# Flujo del Sistema (Diagrama)
+
+```text
+Inicio
+   ↓
+Inicio de sesión / Registro
+   ↓
+Validación de usuario (JWT)
+   ↓
+Acceso al sistema
+   ↓
+Consulta de libros electrónicos
+   ↓
+Búsqueda por categorías o autores
+   ↓
+Selección del libro
+   ↓
+¿Libro disponible?
+   ↓
+Registrar préstamo
+   ↓
+Permitir descarga
+   ↓
+Registrar historial
+   ↓
+Generar reportes
+   ↓
+Cerrar sesión
+   ↓
+Fin
