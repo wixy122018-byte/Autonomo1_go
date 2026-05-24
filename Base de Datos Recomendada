@@ -1,46 +1,180 @@
 # Base de Datos Recomendada
 
-## PostgreSQL como base de datos principal
+Para el desarrollo del Sistema de Gestión de Libros Electrónicos se recomienda utilizar PostgreSQL como sistema gestor de base de datos principal.
 
-Para el desarrollo del Sistema de Gestión de Libros Electrónicos se recomienda utilizar PostgreSQL como sistema gestor de base de datos principal debido a su estabilidad, seguridad y alto rendimiento en aplicaciones empresariales.
+PostgreSQL es una base de datos relacional moderna, segura y altamente utilizada en aplicaciones empresariales debido a su estabilidad, rendimiento y capacidad para manejar grandes cantidades de información.
 
-El sistema almacenará información relacionada con:
+La base de datos será una de las partes más importantes del sistema, ya que permitirá almacenar, organizar y administrar toda la información relacionada con la biblioteca virtual.
 
+Dentro del sistema se almacenarán datos como:
+
+- usuarios registrados
 - libros electrónicos
-- usuarios
+- categorías
 - préstamos digitales
 - historial de descargas
-- reportes
-- autenticación y permisos
+- autenticación
+- reportes y estadísticas
+
+El uso de PostgreSQL permitirá que toda esta información se gestione de manera rápida, segura y eficiente.
 
 ---
 
-## Ventajas de PostgreSQL en el proyecto
+# ¿Por qué se eligió PostgreSQL?
 
-### Seguridad
+Se eligió PostgreSQL porque ofrece múltiples ventajas para proyectos backend desarrollados en Golang.
 
-PostgreSQL ofrece mecanismos avanzados de seguridad y control de acceso que permiten proteger la información de los usuarios y los archivos digitales.
+Entre las principales razones podemos destacar:
 
-### Escalabilidad
+## Seguridad
 
-La base de datos puede crecer conforme aumente la cantidad de usuarios, libros y préstamos sin afectar significativamente el rendimiento del sistema.
+PostgreSQL posee sistemas avanzados de protección de datos y control de accesos.
 
-### Integración con Go
+Esto permitirá:
 
-PostgreSQL posee excelente compatibilidad con Golang mediante librerías como:
+- proteger la información de los usuarios
+- evitar accesos no autorizados
+- administrar permisos
+- garantizar integridad de datos
+
+Además, se integrará con autenticación JWT para reforzar la seguridad del sistema.
+
+---
+
+## Escalabilidad
+
+La plataforma podrá crecer progresivamente sin afectar el rendimiento del sistema.
+
+PostgreSQL permite trabajar con:
+
+- múltiples usuarios simultáneos
+- grandes volúmenes de información
+- consultas complejas
+- procesamiento eficiente de datos
+
+Esto resulta importante para una biblioteca virtual donde constantemente existirán búsquedas, préstamos y descargas.
+
+---
+
+## Compatibilidad con Golang
+
+PostgreSQL tiene excelente integración con Golang mediante librerías modernas como:
 
 - GORM
 - pq
 - pgx
 
-Esto facilita la conexión entre el backend y la base de datos.
+Estas herramientas facilitan:
 
-### Soporte para relaciones complejas
+- conexión con la base de datos
+- consultas automáticas
+- operaciones CRUD
+- migraciones automáticas
+- validación de estructuras
 
-El sistema manejará múltiples relaciones entre entidades como:
+Gracias a esto, el desarrollo backend será más organizado y eficiente.
 
-- usuarios y préstamos
-- libros y categorías
-- usuarios y descargas
+---
 
-PostgreSQL permite gestionar estas relaciones de manera eficiente mediante claves foráneas y consultas relacionales.
+# Relación entre las tablas
+
+La base de datos trabajará mediante relaciones entre distintas entidades del sistema.
+
+Por ejemplo:
+
+- un usuario puede realizar múltiples préstamos
+- un libro puede pertenecer a varias categorías
+- un usuario puede descargar varios libros
+- cada descarga quedará registrada en el historial
+
+Estas relaciones permitirán mantener una estructura organizada y evitar duplicación de información.
+
+---
+
+# Tablas principales del sistema
+
+## Tabla Usuarios
+
+Esta tabla almacenará toda la información relacionada con las personas registradas dentro de la plataforma.
+
+Campos principales:
+
+- id_usuario
+- nombre
+- correo electrónico
+- contraseña cifrada
+- rol del usuario
+- fecha de registro
+
+Los roles permitirán diferenciar:
+
+- administradores
+- lectores
+- usuarios normales
+
+---
+
+## Tabla Libros
+
+Contendrá el catálogo digital de libros electrónicos disponibles dentro del sistema.
+
+Campos principales:
+
+- id_libro
+- título
+- autor
+- categoría
+- descripción
+- formato del archivo
+- disponibilidad
+
+Esta tabla permitirá organizar correctamente la biblioteca virtual.
+
+---
+
+## Tabla Préstamos
+
+Registrará los préstamos digitales realizados por los usuarios.
+
+Campos principales:
+
+- id_prestamo
+- id_usuario
+- id_libro
+- fecha de préstamo
+- fecha de devolución
+- estado del préstamo
+
+Esta tabla permitirá llevar control sobre la disponibilidad de los libros electrónicos.
+
+---
+
+## Tabla Descargas
+
+Permitirá almacenar el historial de descargas realizadas dentro de la plataforma.
+
+Campos principales:
+
+- id_descarga
+- id_usuario
+- id_libro
+- fecha de descarga
+
+Esto ayudará a generar estadísticas y reportes administrativos.
+
+---
+
+# Beneficios de la base de datos en el sistema
+
+La implementación de PostgreSQL permitirá:
+
+- mejor organización de información
+- acceso rápido a los datos
+- control eficiente de usuarios
+- seguridad de información
+- generación de reportes
+- optimización de búsquedas
+- estabilidad del sistema
+- soporte para múltiples usuarios
+
+En conclusión, PostgreSQL representa una solución moderna, robusta y escalable para el desarrollo del Sistema de Gestión de Libros Electrónicos.
