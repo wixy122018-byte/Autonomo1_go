@@ -1,31 +1,267 @@
-       [ INICIO ]
-            ↓
-[ Inicio de sesión / Registro ]
-            ↓
-  Validación (JWT)
-            ↓
-   Acceso al sistema
-            ↓
-  Consulta de libros
-            ↓
-Búsqueda (Categorías/Autores)
-            ↓
-   Selección del libro
-            ↓
-       < ¿Disponible? >
-      /                \
-    SÍ                  NO
-    ↓                    ↓
-[Registrar         [Mostrar mensaje
-  préstamo]         "No disponible"]
-    ↓                    ↓
-[Permitir            (Convergencia)
-  descarga]               ↓
-    ↓                     ↓
-[Registrar historial]     ↓
-            ↓             ↓                
-            [Generar reportes]
-                     ↓ 
-             [Cerrar sesión]
-                     ↓ 
-            +------> [ FIN ] <---+
+# Flujo del Sistema
+
+El flujo del sistema representa el proceso general de funcionamiento del Sistema de Gestión de Libros Electrónicos desde que el usuario ingresa a la plataforma hasta que finaliza sus actividades dentro del sistema.
+
+El objetivo principal del flujo es organizar correctamente cada proceso que realiza el usuario y garantizar que todas las operaciones se ejecuten de manera segura, ordenada y eficiente.
+
+Dentro del sistema existirán diferentes módulos conectados entre sí, permitiendo automatizar procesos relacionados con:
+
+- autenticación
+- gestión de usuarios
+- búsqueda de libros
+- préstamos digitales
+- descargas
+- reportes
+- administración general
+
+El flujo permitirá controlar paso a paso el funcionamiento de la plataforma virtual.
+
+---
+
+# Inicio del sistema
+
+El flujo inicia cuando el usuario accede a la plataforma digital mediante la aplicación o navegador web.
+
+Al ingresar al sistema, el usuario tendrá dos opciones principales:
+
+- registrarse
+- iniciar sesión
+
+Esto permitirá controlar el acceso y garantizar que únicamente usuarios autorizados utilicen la plataforma.
+
+---
+
+# Registro de usuario
+
+Si el usuario aún no posee una cuenta, deberá completar un proceso de registro.
+
+El sistema solicitará información básica como:
+
+- nombre
+- correo electrónico
+- contraseña
+- tipo de usuario
+
+Posteriormente, la información será validada y almacenada dentro de la base de datos PostgreSQL.
+
+Durante este proceso el sistema verificará:
+
+- correos duplicados
+- campos obligatorios
+- seguridad de contraseña
+- formato correcto de datos
+
+Una vez completado el registro, el usuario podrá acceder a la plataforma.
+
+---
+
+# Inicio de sesión y autenticación
+
+Cuando el usuario inicia sesión, el sistema validará sus credenciales mediante autenticación JWT.
+
+En esta etapa se verificará:
+
+- correo electrónico
+- contraseña
+- permisos de acceso
+- rol del usuario
+
+Si las credenciales son correctas, el sistema generará un token JWT que permitirá mantener la sesión activa y segura.
+
+Esto ayudará a proteger la información del sistema y evitar accesos no autorizados.
+
+---
+
+# Acceso al sistema
+
+Después de la autenticación, el usuario ingresará al panel principal de la plataforma.
+
+Dependiendo del tipo de usuario, el sistema mostrará diferentes funcionalidades.
+
+Por ejemplo:
+
+## Administradores
+
+Podrán:
+
+- gestionar libros
+- editar información
+- eliminar registros
+- generar reportes
+- controlar usuarios
+
+## Usuarios lectores
+
+Podrán:
+
+- consultar libros
+- realizar búsquedas
+- solicitar préstamos
+- descargar archivos electrónicos
+
+Esto permitirá mantener control de permisos y seguridad dentro del sistema.
+
+---
+
+# Gestión y búsqueda de libros electrónicos
+
+Una de las funciones principales del sistema será la consulta del catálogo digital.
+
+Los usuarios podrán realizar búsquedas utilizando filtros como:
+
+- nombre del libro
+- autor
+- categoría
+- disponibilidad
+- formato
+
+El sistema procesará las búsquedas dinámicamente y mostrará resultados organizados.
+
+Esto facilitará el acceso rápido a la información y mejorará la experiencia de navegación.
+
+---
+
+# Selección del libro
+
+Después de encontrar un libro, el usuario podrá visualizar información detallada relacionada con:
+
+- título
+- autor
+- descripción
+- categoría
+- formato del archivo
+- disponibilidad
+
+El sistema permitirá decidir si el usuario desea:
+
+- solicitar préstamo
+- descargar el libro
+- guardar información para futuras consultas
+
+---
+
+# Validación de disponibilidad
+
+Antes de autorizar un préstamo digital, el sistema verificará automáticamente si el libro se encuentra disponible.
+
+En esta etapa el sistema validará:
+
+- estado del libro
+- permisos del usuario
+- historial de préstamos
+- límites de acceso
+
+Si el libro está disponible, el préstamo será aprobado.
+
+En caso contrario, el sistema mostrará un mensaje indicando que el recurso no se encuentra disponible temporalmente.
+
+---
+
+# Registro del préstamo digital
+
+Una vez aprobado el préstamo, el sistema almacenará automáticamente la información dentro de la base de datos.
+
+Se registrarán datos como:
+
+- usuario solicitante
+- libro seleccionado
+- fecha de préstamo
+- fecha de devolución
+- estado del préstamo
+
+Esto permitirá mantener un historial organizado de actividades realizadas dentro de la plataforma.
+
+---
+
+# Descarga de libros electrónicos
+
+Después del préstamo, el usuario podrá descargar el archivo digital.
+
+El sistema verificará:
+
+- autenticación del usuario
+- permisos de descarga
+- disponibilidad del archivo
+
+Posteriormente iniciará la descarga del libro electrónico.
+
+Además, el sistema registrará automáticamente el historial de descargas para generar estadísticas futuras.
+
+---
+
+# Gestión de reportes
+
+El sistema también permitirá generar reportes administrativos relacionados con el funcionamiento de la plataforma.
+
+Entre los reportes se podrán obtener:
+
+- libros más descargados
+- usuarios más activos
+- historial de préstamos
+- categorías más consultadas
+- estadísticas generales
+
+Estos reportes ayudarán a mejorar la administración y control de la biblioteca virtual.
+
+---
+
+# Cierre de sesión
+
+Finalmente, el usuario podrá cerrar sesión de forma segura.
+
+Al cerrar sesión:
+
+- el token JWT será invalidado
+- finalizará el acceso del usuario
+- se protegerá la información del sistema
+
+Esto permitirá mantener seguridad y control de accesos dentro de la plataforma.
+
+---
+
+# Importancia del flujo del sistema
+
+El flujo general del sistema permitirá:
+
+- organizar correctamente los procesos
+- automatizar actividades
+- mejorar la seguridad
+- optimizar tiempos de respuesta
+- facilitar navegación de usuarios
+- mantener control de información
+
+Además, ayudará a que el sistema funcione de manera estructurada, moderna y eficiente.
+
+---
+
+# Resumen general del flujo
+
+El funcionamiento general del sistema seguirá el siguiente proceso:
+
+Inicio
+↓
+Registro o inicio de sesión
+↓
+Autenticación JWT
+↓
+Acceso al sistema
+↓
+Consulta de libros
+↓
+Búsquedas dinámicas
+↓
+Selección del libro
+↓
+Validación de disponibilidad
+↓
+Préstamo digital
+↓
+Descarga del archivo
+↓
+Registro de actividades
+↓
+Generación de reportes
+↓
+Cierre de sesión
+↓
+Fin
