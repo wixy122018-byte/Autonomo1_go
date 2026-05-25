@@ -93,15 +93,3 @@ Los paquetes recomendados se relacionan con las diferentes capas del sistema de 
 ## Importancia dentro del sistema
 
 La selección de estos paquetes permite cubrir las necesidades principales del backend sin sobrecargar el proyecto con dependencias innecesarias.
-
-Gin facilita la construcción de la API REST. GORM y el driver de MySQL permiten trabajar con la base de datos de forma ordenada. JWT y bcrypt fortalecen la seguridad del sistema. Viper permite administrar la configuración de manera centralizada. CORS permite controlar la comunicación entre el frontend y el backend.
-
-En conjunto, estos paquetes contribuyen a que el sistema sea más organizado, seguro, escalable y fácil de mantener.
-
-## Conclusión
-
-Los paquetes de terceros recomendados para el proyecto fueron seleccionados de acuerdo con las necesidades reales del Sistema de Gestión de Libros Electrónicos.
-
-Cada paquete cumple una función específica dentro de la arquitectura: gestión de rutas, acceso a datos, autenticación, cifrado de contraseñas, configuración del entorno y comunicación entre cliente y servidor.
-
-Esta selección permite construir un backend funcional y coherente con la arquitectura planteada, evitando dependencias innecesarias y manteniendo una estructura clara para el desarrollo del sistema.
