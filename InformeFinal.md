@@ -1,3 +1,5 @@
+# Sistema de Gestión de Libros Electrónicos en Go
+
 ## Descripción General del Sistema
 
 El proyecto consiste en desarrollar una aplicación backend en Golang orientada a la administración de libros electrónicos dentro de una biblioteca virtual o plataforma digital de lectura.
@@ -37,7 +39,9 @@ Desarrollar un Sistema de Gestión de Libros Electrónicos en Golang que permita
 
 ---
 
-# ¿En qué consiste la gestión del sistema?
+## Gestión del Sistema
+
+### ¿En qué consiste la gestión del sistema?
 
 La gestión del sistema consiste en administrar de manera digital toda la información relacionada con los libros electrónicos y los usuarios que interactúan dentro de la plataforma virtual. El propósito principal es automatizar procesos que normalmente se realizan manualmente en una biblioteca tradicional, permitiendo un acceso más rápido, organizado y seguro a los recursos digitales.
 
@@ -49,9 +53,9 @@ Además, este sistema busca aprovechar las ventajas de las bibliotecas digitales
 
 ---
 
-# Procesos principales de la gestión del sistema
+### Procesos principales de la gestión del sistema
 
-## Gestión de libros electrónicos
+#### Gestión de libros electrónicos
 
 La gestión de libros representa el núcleo principal del sistema, ya que permite administrar todo el catálogo digital disponible dentro de la biblioteca virtual.
 
@@ -77,7 +81,7 @@ Esto facilitará el acceso rápido a los recursos digitales y mejorará la exper
 
 ---
 
-## Gestión de usuarios
+#### Gestión de usuarios
 
 La gestión de usuarios consiste en administrar toda la información relacionada con las personas registradas dentro de la plataforma.
 
@@ -101,7 +105,7 @@ Además, la autenticación mediante JWT permitirá proteger el acceso a la plata
 
 ---
 
-## Gestión de préstamos digitales
+#### Gestión de préstamos digitales
 
 La gestión de préstamos digitales permitirá controlar la asignación temporal de libros electrónicos a los usuarios registrados.
 
@@ -119,7 +123,7 @@ Posteriormente, el préstamo quedará registrado dentro de la base de datos para
 
 ---
 
-## Gestión de descargas
+#### Gestión de descargas
 
 La gestión de descargas permitirá a los usuarios autorizados descargar libros electrónicos directamente desde la plataforma.
 
@@ -139,7 +143,7 @@ Este módulo resulta importante porque facilita el acceso rápido a los contenid
 
 ---
 
-## Gestión de reportes
+#### Gestión de reportes
 
 La gestión de reportes permitirá generar información estadística relacionada con el funcionamiento general de la plataforma.
 
@@ -155,7 +159,7 @@ Los reportes ayudarán a los administradores a analizar el comportamiento de la 
 
 ---
 
-# Importancia de la gestión del sistema
+### Importancia de la gestión del sistema
 
 La gestión del sistema resulta importante porque permite modernizar la administración de bibliotecas mediante herramientas digitales y tecnologías actuales.
 
@@ -179,7 +183,7 @@ Además, al desarrollarse en Golang, el proyecto permitirá implementar una arqu
 - manejo de JSON
 - persistencia de datos
 
-# Relación con temas estudiados en GO
+## Relación con temas estudiados en Go
 ### Para el desarrollo de la herramienta de gestión, acudimos a distintos fundamentos claves de GO impartidos en clases tales como:
 
 | Tema en GO | <center>Función dentro del proyecto</center> |
@@ -195,9 +199,9 @@ Además, al desarrollarse en Golang, el proyecto permitirá implementar una arqu
 | Packages | Permiten la organización del código en paquetes estructurados |
 | File Handling | Permitirán la administración, almacenamiento y lectura de archivos para el usuario |
 
-# ARQUITECTURA DEL SISTEMA DE GESTIÓN DE LIBROS ELECTRÓNICOS
+## Arquitectura del Sistema de Gestión de Libros Electrónicos
 
-## Tabla de Contenidos
+### Tabla de Contenidos
 1. [Introducción](#introducción)
 2. [Flujo General de Arquitectura](#flujo-general)
 3. [Estructura del Proyecto](#estructura)
@@ -207,7 +211,7 @@ Además, al desarrollarse en Golang, el proyecto permitirá implementar una arqu
 
 ---
 
-## Introducción {#introducción}
+### Introducción
 
 El Sistema de Gestión de Libros Electrónicos será desarrollado en **Go**, implementando una arquitectura por capas que permite mantener el sistema organizado, escalable y fácil de mantener.
 
@@ -220,7 +224,7 @@ El Sistema de Gestión de Libros Electrónicos será desarrollado en **Go**, imp
 
 ---
 
-## Flujo General de Arquitectura {#flujo-general}
+### Flujo General de Arquitectura
 
 ```
 ┌─────────┐
@@ -255,7 +259,7 @@ El Sistema de Gestión de Libros Electrónicos será desarrollado en **Go**, imp
 
 ---
 
-## Estructura del Proyecto {#estructura}
+### Estructura del Proyecto
 
 ```
 /proyecto-libros
@@ -307,9 +311,9 @@ El Sistema de Gestión de Libros Electrónicos será desarrollado en **Go**, imp
 
 ---
 
-## Usuarios y Roles {#usuarios-roles}
+### Usuarios y Roles
 
-### Tabla de Roles y Permisos
+#### Tabla de Roles y Permisos
 
 | **Rol** | **Permisos Clave** | **Funcionalidades Principales** |
 |---------|-------------------|--------------------------------|
@@ -319,9 +323,9 @@ El Sistema de Gestión de Libros Electrónicos será desarrollado en **Go**, imp
 
 ---
 
-## Capas de la Arquitectura {#capas}
+### Capas de la Arquitectura
 
-### 1. CAPA CLIENTE
+#### 1 CAPA CLIENTE
 
 **Descripción:** Interfaz visual donde interactúan los usuarios directamente.
 
@@ -351,7 +355,7 @@ El Sistema de Gestión de Libros Electrónicos será desarrollado en **Go**, imp
 
 ---
 
-### 2. CAPA API REST
+#### 2 CAPA API REST
 
 **Framework:** Gin
 
@@ -406,7 +410,7 @@ El Sistema de Gestión de Libros Electrónicos será desarrollado en **Go**, imp
 
 ---
 
-### 3. CAPA DE CONTROLADORES
+#### 3 CAPA DE CONTROLADORES
 
 **Descripción:** Intermediarios entre la API y la lógica de negocio.
 
@@ -462,7 +466,7 @@ func CrearPrestamo(c *gin.Context) {
 
 ---
 
-### 4. CAPA DE SERVICIOS
+#### 4 CAPA DE SERVICIOS
 
 **Descripción:** Contiene la lógica de negocio del sistema.
 
@@ -517,7 +521,7 @@ func CrearPrestamo(usuarioID int, libroID int) (models.Prestamo, error) {
 
 ---
 
-### 5. CAPA DE REPOSITORIOS
+#### 5 CAPA DE REPOSITORIOS
 
 **Descripción:** Responsable de comunicarse directamente con la base de datos.
 
@@ -566,7 +570,7 @@ func ActualizarLibro(id int, libro models.Libro) models.Libro {
 
 ---
 
-### 6. CAPA DE BASE DE DATOS
+#### 6 CAPA DE BASE DE DATOS
 
 **Sistema:** PostgreSQL
 
@@ -607,23 +611,23 @@ if err != nil {
 
 ---
 
-## Flujo Completo {#flujo-completo}
+### Flujo Completo
 
-### Ciclo de una Solicitud Completa:
+#### Ciclo de una Solicitud Completa:
 
 | **Paso** | **Componente** | **Acción** |
 |---------|---------------|-----------|
-| 1 | Usuario | Interactúa con la interfaz web |
-| 2 | Cliente | Envía solicitud HTTP a la API REST |
-| 3 | Gin Framework | Recibe la petición HTTP |
-| 4 | Controlador | Procesa y valida los datos |
-| 5 | Servicio | Ejecuta la lógica de negocio |
-| 6 | Repositorio | Consulta la base de datos PostgreSQL |
-| 7 | Base de Datos | Devuelve los resultados solicitados |
-| 8 | Servicio | Genera respuesta JSON con los datos |
-| 9 | Cliente | Recibe respuesta y actualiza interfaz |
+| 1 |  Usuario | Interactúa con la interfaz web |
+| 2 |  Cliente | Envía solicitud HTTP a la API REST |
+| 3 |  Gin Framework | Recibe la petición HTTP |
+| 4 |  Controlador | Procesa y valida los datos |
+| 5 |  Servicio | Ejecuta la lógica de negocio |
+| 6 |  Repositorio | Consulta la base de datos PostgreSQL |
+| 7 |  Base de Datos | Devuelve los resultados solicitados |
+| 8 |  Servicio | Genera respuesta JSON con los datos |
+| 9 | ↩ Cliente | Recibe respuesta y actualiza interfaz |
 
-### Ejemplo Práctico - Búsqueda de Libro:
+#### Ejemplo Práctico - Búsqueda de Libro:
 
 ```
 Usuario: Escribe "Go Programming" en la barra de búsqueda
@@ -647,32 +651,15 @@ Cliente: Muestra resultados en pantalla
 
 ---
 
-## Conclusión
+## Módulos del Sistema de Gestión de Libros Electrónicos en Go
 
-La arquitectura basada en **Cliente → API REST → Controladores → Servicios → Repositorios → Base de Datos** permite:
-
-| **Beneficio** | **Descripción** |
-|--------------|-----------------|
-| **Organización** | Código estructurado y fácil de navegar |
-| **Seguridad** | Validación en múltiples capas |
-| **Escalabilidad** | Capacidad de crecer sin rediseño |
-| **Mantenibilidad** | Cambios aislados por capas |
-| **Reutilización** | Componentes reutilizables |
-| **Testabilidad** | Fácil de probar unitariamente |
-
-La separación por capas facilita la administración del código, mejora el mantenimiento y permite que el sistema pueda crecer en el futuro incorporando nuevas funcionalidades sin afectar su estructura actual.
-
----
-
-# MÓDULOS DEL SISTEMA DE GESTIÓN DE LIBROS ELECTRÓNICOS EN GO
-
-## Introducción
+### Introducción
 
 El Sistema de Gestión de Libros Electrónicos será desarrollado utilizando **Go** bajo una arquitectura modular. Esta estructura permite dividir el sistema en módulos independientes que facilitan el desarrollo colaborativo, mantenimiento y escalabilidad.
 
 ---
 
-## Tabla de Contenidos
+### Tabla de Contenidos
 
 1. [Módulo de Gestión de Usuarios](#1-módulo-de-gestión-de-usuarios)
 2. [Módulo de Gestión de Libros](#2-módulo-de-gestión-de-libros)
@@ -684,19 +671,19 @@ El Sistema de Gestión de Libros Electrónicos será desarrollado utilizando **G
 
 ---
 
-## 1. MÓDULO DE GESTIÓN DE USUARIOS
+### 1. MÓDULO DE GESTIÓN DE USUARIOS
 
-### Descripción General
+#### Descripción General
 Administra toda la información relacionada con los usuarios del sistema. Es uno de los módulos más importantes porque controla el acceso, autenticación y permisos dentro de la plataforma.
 
-### Objetivos del Módulo
+#### Objetivos del Módulo
 - Registrar nuevos usuarios
 - Permitir inicio de sesión
 - Gestionar perfiles de usuario
 - Recuperar contraseñas perdidas
 - Controlar acceso según permisos asignados
 
-### Arquitectura Interna
+#### Arquitectura Interna
 
 ```
 ┌─────────────────────────┐
@@ -716,9 +703,9 @@ Administra toda la información relacionada con los usuarios del sistema. Es uno
 └─────────────────────────┘
 ```
 
-### Componentes Internos
+#### Componentes Internos
 
-#### Usuario Controller
+##### Usuario Controller
 **Responsabilidades:**
 - Recibir solicitudes HTTP
 - Validar datos básicos
@@ -730,7 +717,7 @@ Administra toda la información relacionada con los usuarios del sistema. Es uno
 - Actualización de perfil
 - Obtener información de usuario
 
-#### Usuario Service
+##### Usuario Service
 **Responsabilidades:**
 Contiene toda la lógica del negocio:
 - Verificar si el correo ya existe
@@ -739,7 +726,7 @@ Contiene toda la lógica del negocio:
 - Generar tokens JWT
 - Validar permisos de usuario
 
-#### Usuario Repository
+##### Usuario Repository
 **Responsabilidades:**
 - Guardar nuevos usuarios
 - Consultar información de usuarios
@@ -747,9 +734,9 @@ Contiene toda la lógica del negocio:
 - Eliminar usuarios
 - Buscar usuarios por criterios
 
-### Procesos Principales
+#### Procesos Principales
 
-#### 1. Registro de Usuarios
+##### 1. Registro de Usuarios
 ```
 1. Controlador recibe datos de registro
    ↓
@@ -765,7 +752,7 @@ Contiene toda la lógica del negocio:
 5. Retorna token JWT al cliente
 ```
 
-#### 2. Inicio de Sesión
+##### 2. Inicio de Sesión
 ```
 1. Búsqueda del usuario por email
    ↓
@@ -778,7 +765,7 @@ Contiene toda la lógica del negocio:
 5. Devolución de acceso al cliente
 ```
 
-### Seguridad Implementada
+#### Seguridad Implementada
 
 **Librerías utilizadas:**
 - **bcrypt** → Cifrado y hash de contraseñas
@@ -791,7 +778,7 @@ Contiene toda la lógica del negocio:
 - Control de acceso por roles
 - Auditoría de accesos
 
-### Importancia del Módulo
+#### Importancia del Módulo
 Controla aspectos críticos del sistema:
 - Seguridad general
 - Autenticación de usuarios
@@ -800,19 +787,19 @@ Controla aspectos críticos del sistema:
 
 ---
 
-## 2. MÓDULO DE GESTIÓN DE LIBROS
+### 2. MÓDULO DE GESTIÓN DE LIBROS
 
-### Descripción General
+#### Descripción General
 Administra todo el catálogo digital de libros electrónicos. Es considerado el núcleo principal de la biblioteca virtual.
 
-### Objetivos del Módulo
+#### Objetivos del Módulo
 - Registrar nuevos libros
 - Actualizar información de libros
 - Organizar por categorías
 - Gestionar archivos digitales (PDF, EPUB)
 - Controlar disponibilidad
 
-### Arquitectura Interna
+#### Arquitectura Interna
 
 ```
 ┌─────────────────────────┐
@@ -832,7 +819,7 @@ Administra todo el catálogo digital de libros electrónicos. Es considerado el 
 └─────────────────────────┘
 ```
 
-### Información Gestionada por Libro
+#### Información Gestionada por Libro
 
 Cada registro de libro almacenará:
 - **Identificador único** (ISBN)
@@ -847,9 +834,9 @@ Cada registro de libro almacenará:
 - **Descripción/Resumen**
 - **Fecha de registro**
 
-### Procesos Principales
+#### Procesos Principales
 
-#### 1. Registro de Libros
+##### 1. Registro de Libros
 ```
 1. Controlador recibe información del libro
    ↓
@@ -867,7 +854,7 @@ Cada registro de libro almacenará:
 6. Retorna confirmación al bibliotecario
 ```
 
-#### 2. Actualización de Libros
+##### 2. Actualización de Libros
 El sistema permite:
 - Editar títulos y autores
 - Cambiar categorías
@@ -875,20 +862,20 @@ El sistema permite:
 - Modificar estado de disponibilidad
 - Actualizar número de copias
 
-#### 3. Eliminación de Libros
+##### 3. Eliminación de Libros
 - Eliminar registros permanentemente
 - Desactivar libros (mantener histórico)
 - Limpiar información obsoleta
 - Mantener referencia en préstamos históricos
 
-### Tecnologías Utilizadas en Go
+#### Tecnologías Utilizadas en Go
 
 - **Gin** → Framework para API REST
 - **GORM** → ORM para conexión con PostgreSQL
 - **FileSystem de Go** → Manejo y almacenamiento de archivos
 - **Multer/Form parsing** → Procesamiento de uploads
 
-### Importancia del Módulo
+#### Importancia del Módulo
 
 Permite:
 - Organizar biblioteca digital de forma eficiente
@@ -899,18 +886,18 @@ Permite:
 
 ---
 
-## 3. MÓDULO DE BÚSQUEDA DE LIBROS
+### 3. MÓDULO DE BÚSQUEDA DE LIBROS
 
-### Descripción General
+#### Descripción General
 Facilita búsquedas rápidas y eficientes dentro del sistema mediante filtros y consultas avanzadas.
 
-### Objetivos del Módulo
+#### Objetivos del Módulo
 - Localizar libros por múltiples criterios
 - Aplicar filtros avanzados
 - Retornar resultados relevantes
 - Optimizar tiempo de búsqueda
 
-### Arquitectura Interna
+#### Arquitectura Interna
 
 ```
 ┌─────────────────────────┐
@@ -930,19 +917,19 @@ Facilita búsquedas rápidas y eficientes dentro del sistema mediante filtros y 
 └─────────────────────────┘
 ```
 
-### Funciones Principales
+#### Funciones Principales
 
-#### 1. Búsqueda por Título
+##### 1. Búsqueda por Título
 - Permite buscar libros mediante palabras clave
 - Búsqueda parcial (LIKE)
 - Orden por relevancia
 
-#### 2. Búsqueda por Autor
+##### 2. Búsqueda por Autor
 - Localiza libros relacionados con autores específicos
 - Soporte para múltiples autores
 - Búsqueda flexible
 
-#### 3. Búsqueda por Categorías
+##### 3. Búsqueda por Categorías
 Ejemplos de categorías:
 - Programación
 - Redes y Telecomunicaciones
@@ -951,7 +938,7 @@ Ejemplos de categorías:
 - Ciencias
 - Historia
 
-#### 4. Filtros Avanzados
+##### 4. Filtros Avanzados
 Permite filtrar por:
 - **Año de publicación** (rango)
 - **Estado de disponibilidad** (disponible/prestado)
@@ -960,7 +947,7 @@ Permite filtrar por:
 - **Editorial**
 - **Tipo de archivo** (PDF, EPUB)
 
-### Procesamiento en Go
+#### Procesamiento en Go
 
 ```
 1. Controlador recibe parámetros de búsqueda
@@ -976,7 +963,7 @@ Permite filtrar por:
 6. Retorna JSON con resultados paginados
 ```
 
-### Ventajas del Módulo
+#### Ventajas del Módulo
 
 - Mejora significativa de la experiencia del usuario
 - Reduce tiempo de búsqueda
@@ -986,19 +973,19 @@ Permite filtrar por:
 
 ---
 
-## 4. MÓDULO DE PRÉSTAMOS ELECTRÓNICOS
+### 4. MÓDULO DE PRÉSTAMOS ELECTRÓNICOS
 
-### Descripción General
+#### Descripción General
 Controla todo el proceso de préstamos digitales. Es uno de los procesos más importantes del sistema.
 
-### Objetivos del Módulo
+#### Objetivos del Módulo
 - Administrar solicitudes de préstamo
 - Verificar disponibilidad
 - Gestionar devoluciones
 - Mantener historiales completos
 - Controlar límites por usuario
 
-### Arquitectura Interna
+#### Arquitectura Interna
 
 ```
 ┌─────────────────────────┐
@@ -1018,9 +1005,9 @@ Controla todo el proceso de préstamos digitales. Es uno de los procesos más im
 └─────────────────────────┘
 ```
 
-### Flujo de Préstamo en Go
+#### Flujo de Préstamo en Go
 
-#### Cuando un usuario solicita un libro:
+##### Cuando un usuario solicita un libro:
 
 ```
 PASO 1: Recepción de Solicitud
@@ -1048,33 +1035,33 @@ PASO 4: Actualización
    └─→ Retorna confirmación al usuario
 ```
 
-### Funciones Principales
+#### Funciones Principales
 
-#### 1. Solicitud de Préstamos
+##### 1. Solicitud de Préstamos
 - Permite solicitar libros digitales
 - Validación automática de criterios
 - Generación de comprobante digital
 - Notificación al usuario
 
-#### 2. Gestión de Devoluciones
+##### 2. Gestión de Devoluciones
 - Procesar devoluciones de libros
 - Calcular multas si es necesario
 - Actualizar disponibilidad
 - Generar comprobante de devolución
 
-#### 3. Historial de Préstamos
+##### 3. Historial de Préstamos
 - Guarda todos los préstamos realizados
 - Mantiene registro de devoluciones
 - Información sobre multas generadas
 - Análisis de hábitos de lectura
 
-#### 4. Control de Restricciones
+##### 4. Control de Restricciones
 - Límite de libros por usuario (ej: máximo 5)
 - Duración máxima de préstamo (ej: 30 días)
 - Penalizaciones por retraso
 - Bloqueo temporal por incumplimiento
 
-### Datos del Préstamo
+#### Datos del Préstamo
 
 ```
 Tabla: PRESTAMOS
@@ -1089,7 +1076,7 @@ Tabla: PRESTAMOS
 └─ observaciones
 ```
 
-### Importancia del Módulo
+#### Importancia del Módulo
 
 Permite:
 - Automatizar procesos bibliotecarios
@@ -1100,18 +1087,18 @@ Permite:
 
 ---
 
-## 5. MÓDULO DE RESERVAS
+### 5. MÓDULO DE RESERVAS
 
-### Descripción General
+#### Descripción General
 Administra reservas de libros temporalmente no disponibles.
 
-### Objetivos del Módulo
+#### Objetivos del Módulo
 - Permitir reservas de libros ocupados
 - Mantener lista de espera
 - Notificar disponibilidad
 - Gestionar cancelaciones
 
-### Arquitectura Interna
+#### Arquitectura Interna
 
 ```
 ┌─────────────────────────┐
@@ -1131,7 +1118,7 @@ Administra reservas de libros temporalmente no disponibles.
 └─────────────────────────┘
 ```
 
-### Proceso de Reserva
+#### Proceso de Reserva
 
 ```
 1. Usuario solicita reserva de libro no disponible
@@ -1154,29 +1141,29 @@ Administra reservas de libros temporalmente no disponibles.
    - Notificación en el sistema
 ```
 
-### Funciones Principales
+#### Funciones Principales
 
-#### 1. Registro de Reservas
+##### 1. Registro de Reservas
 - Guardar solicitudes de reserva
 - Validar datos de entrada
 - Asignar prioridad automática
 
-#### 2. Lista de Espera
+##### 2. Lista de Espera
 - Organizar usuarios automáticamente
 - Respetar orden FIFO (First In, First Out)
 - Mantener histórico de esperas
 
-#### 3. Notificaciones
+##### 3. Notificaciones
 - Informar cuando libro está disponible
 - Enviar recordatorios
 - Confirmar recepción de notificación
 
-#### 4. Cancelaciones
+##### 4. Cancelaciones
 - Permitir eliminar reservas
 - Liberar posición en lista
 - Notificar cancelación al usuario
 
-### Datos de Reserva
+#### Datos de Reserva
 
 ```
 Tabla: RESERVAS
@@ -1190,7 +1177,7 @@ Tabla: RESERVAS
 └─ fecha_cancelacion
 ```
 
-### Importancia del Módulo
+#### Importancia del Módulo
 
 - Evita conflictos entre usuarios
 - Mejora administración de recursos digitales
@@ -1199,18 +1186,18 @@ Tabla: RESERVAS
 
 ---
 
-## 6. MÓDULO DE REPORTES Y ESTADÍSTICAS
+### 6. MÓDULO DE REPORTES Y ESTADÍSTICAS
 
-### Descripción General
+#### Descripción General
 Genera información administrativa y estadística del sistema.
 
-### Objetivos del Módulo
+#### Objetivos del Módulo
 - Permitir análisis de funcionamiento
 - Generar reportes administrativos
 - Crear estadísticas de uso
 - Facilitar toma de decisiones
 
-### Arquitectura Interna
+#### Arquitectura Interna
 
 ```
 ┌─────────────────────────┐
@@ -1230,27 +1217,27 @@ Genera información administrativa y estadística del sistema.
 └─────────────────────────┘
 ```
 
-### Funciones Principales
+#### Funciones Principales
 
-#### 1. Reportes de Préstamos
+##### 1. Reportes de Préstamos
 - Muestra historial de préstamos realizados
 - Análisis de tendencias
 - Identificación de períodos de alta demanda
 - Libros más prestados
 
-#### 2. Reportes de Usuarios
+##### 2. Reportes de Usuarios
 - Identifica usuarios más activos
 - Análisis de perfiles de lectura
 - Detecta patrones de uso
 - Usuarios con retrasos o multas
 
-#### 3. Reportes de Libros
+##### 3. Reportes de Libros
 - Muestra libros más consultados
 - Libros menos utilizados
 - Análisis de categorías populares
 - Disponibilidad vs. demanda
 
-#### 4. Estadísticas Generales
+##### 4. Estadísticas Generales
 - Métricas generales del sistema
 - Número total de usuarios
 - Cantidad de libros en catálogo
@@ -1258,14 +1245,14 @@ Genera información administrativa y estadística del sistema.
 - Reservas pendientes
 - Tasa de ocupación
 
-### Exportación de Información
+#### Exportación de Información
 
 El sistema puede generar reportes en formatos:
 - **PDF** → Para impresión y distribución formal
 - **Excel** → Para análisis adicional
 - **CSV** → Para integración con otras herramientas
 
-### Procesamiento en Go
+#### Procesamiento en Go
 
 ```
 1. Controlador recibe solicitud de reporte
@@ -1287,7 +1274,7 @@ El sistema puede generar reportes en formatos:
 - Optimiza consultas complejas
 - Manejo concurrente de múltiples reportes
 
-### Importancia del Módulo
+#### Importancia del Módulo
 
 Facilita:
 - Toma de decisiones administrativas
@@ -1298,12 +1285,12 @@ Facilita:
 
 ---
 
-## 7. MÓDULO DE SEGURIDAD
+### 7. MÓDULO DE SEGURIDAD
 
-### Descripción General
+#### Descripción General
 Protege toda la información del sistema. Fundamental debido a que maneja datos críticos.
 
-### Datos Sensibles Protegidos
+#### Datos Sensibles Protegidos
 
 - Información de usuarios
 - Contraseñas
@@ -1311,7 +1298,7 @@ Protege toda la información del sistema. Fundamental debido a que maneja datos 
 - Información académica
 - Registros de préstamos
 
-### Objetivos del Módulo
+#### Objetivos del Módulo
 
 Garantizar:
 - **Confidencialidad** → Solo usuarios autorizados acceden
@@ -1319,7 +1306,7 @@ Garantizar:
 - **Disponibilidad** → Servicio siempre accesible
 - **Autenticidad** → Verificar identidad de usuarios
 
-### Arquitectura Interna
+#### Arquitectura Interna
 
 ```
 ┌──────────────────────────────────┐
@@ -1344,9 +1331,9 @@ Garantizar:
 └──────────────────────────────────┘
 ```
 
-### Funciones Principales
+#### Funciones Principales
 
-#### 1. Autenticación JWT
+##### 1. Autenticación JWT
 Go utiliza JWT para:
 - **Validar sesiones** → Verificar token activo
 - **Generar tokens** → Crear token al login
@@ -1364,7 +1351,7 @@ Estructura del Token JWT:
 }
 ```
 
-#### 2. Cifrado de Contraseñas
+##### 2. Cifrado de Contraseñas
 - Utiliza **bcrypt** para hash seguro
 - Nunca almacena contraseña en texto plano
 - Salt automático incluido
@@ -1383,21 +1370,21 @@ Flujo de contraseña:
 5. Valida o rechaza acceso
 ```
 
-#### 3. Middleware de Autenticación
+##### 3. Middleware de Autenticación
 Permite:
 - Proteger endpoints específicos
 - Validar permisos por rol
 - Bloquear accesos indebidos
 - Registrar intentos fallidos
 
-#### 4. Auditoría y Logging
+##### 4. Auditoría y Logging
 El sistema registra:
 - **Inicios de sesión** → Quién, cuándo, desde dónde
 - **Errores de autenticación** → Intentos fallidos
 - **Actividades críticas** → Cambios importantes
 - **Acceso a datos sensibles** → Quién consultó qué
 
-### Medidas de Seguridad Adicionales
+#### Medidas de Seguridad Adicionales
 
 - HTTPS/TLS para comunicación cifrada
 - CORS configurado
@@ -1407,7 +1394,7 @@ El sistema registra:
 - Passwords policy (complejidad mínima)
 - Bloqueo temporal tras intentos fallidos
 
-### Importancia del Módulo
+#### Importancia del Módulo
 
 Protege:
 - Información personal de usuarios
@@ -1418,58 +1405,9 @@ Protege:
 
 ---
 
-## CONCLUSIÓN
+## Programación Funcional en Go
 
-La implementación modular utilizando **Go** permite desarrollar un Sistema de Gestión de Libros Electrónicos altamente organizado, eficiente y escalable.
-
-### Beneficios de la Arquitectura Modular
-
-#### Desarrollo
-- Equipos pueden trabajar en módulos independientes
-- Reduce conflictos en versionado
-- Desarrollo más rápido y eficiente
-
-#### Mantenimiento
-- Módulos aislados facilitan identificación de problemas
-- Actualizaciones sin afectar otros módulos
-- Código más legible y documentado
-
-#### Seguridad
-- Control de acceso granular
-- Aislamiento de responsabilidades
-- Auditoría por módulo
-
-#### Escalabilidad
-- Fácil agregar nuevos módulos
-- Preparado para crecimiento futuro
-- Microservicios posibles
-
-### Stack Tecnológico
-
-| Componente | Tecnología | Función |
-|-----------|------------|---------|
-| API REST | Gin | Framework web ligero y rápido |
-| ORM | GORM | Manejo de base de datos |
-| BD | PostgreSQL | Almacenamiento de datos |
-| Autenticación | JWT + bcrypt | Seguridad y autenticación |
-| Gestión de Archivos | FileSystem Go | Almacenamiento digital |
-| Reportes | Exportación múltiples formatos | PDF, Excel, CSV |
-
-### Próximos Pasos
-
-1. **Configuración del entorno** de desarrollo
-2. **Creación de estructura** de carpetas por módulo
-3. **Implementación de modelos** (structs en Go)
-4. **Desarrollo de Controllers** y Servicios
-5. **Testing** unitario por módulo
-6. **Integración y testing** de módulos
-7. **Deployment** en producción
-
----
-
-# Implementación de Programación Funcional en Go
-
-## Descripción general
+### Descripción general
 
 Go es un lenguaje principalmente imperativo, estructurado y concurrente. Aunque no es un lenguaje funcional puro, permite aplicar ciertos principios de programación funcional mediante el uso de funciones como valores, closures, funciones puras y composición de comportamientos.
 
@@ -1477,7 +1415,7 @@ Dentro del Sistema de Gestión de Libros Electrónicos, la programación funcion
 
 Este enfoque no reemplaza la arquitectura principal del proyecto, sino que ayuda a que ciertas operaciones sean más limpias, reutilizables y fáciles de mantener.
 
-## Aplicación dentro del proyecto
+### Aplicación dentro del proyecto
 
 La programación funcional se aplicará principalmente en la capa de servicios y en funciones auxiliares del sistema. Estas áreas concentran la lógica de negocio y permiten trabajar con datos como usuarios, libros, préstamos, descargas, reservas y reportes.
 
@@ -1493,7 +1431,7 @@ Entre los principales usos dentro del proyecto se consideran:
 - Aplicación de reglas dinámicas según el tipo de usuario.
 - Separación de la lógica general de procesamiento y las condiciones específicas.
 
-## Funciones de orden superior
+### Funciones de orden superior
 
 Las funciones de orden superior permiten recibir otras funciones como parámetros o devolver funciones como resultado. En el proyecto, este principio puede utilizarse para construir procesos reutilizables, especialmente en filtros, validaciones y reportes.
 
@@ -1501,7 +1439,7 @@ Este enfoque evita repetir la misma estructura lógica en diferentes módulos. P
 
 Dentro del sistema, esto resulta útil para módulos como búsqueda de libros, gestión de préstamos y generación de reportes.
 
-## Transformación de datos
+### Transformación de datos
 
 La transformación de datos permite convertir información interna del sistema en estructuras más adecuadas para su uso o presentación. En el proyecto, este principio puede aplicarse cuando los datos obtenidos desde la base de datos necesitan ser adaptados antes de enviarse al cliente mediante la API REST.
 
@@ -1509,7 +1447,7 @@ Esto es importante porque no siempre se debe exponer toda la información intern
 
 Este enfoque puede aplicarse especialmente en el módulo de libros, usuarios, préstamos y reportes.
 
-## Uso de closures
+### Uso de closures
 
 Los closures permiten crear funciones que conservan información del contexto donde fueron definidas. En el proyecto, pueden utilizarse para generar reglas dinámicas de búsqueda, validación o configuración sin depender de variables globales.
 
@@ -1517,7 +1455,7 @@ Este recurso es útil cuando el sistema necesita aplicar condiciones que cambian
 
 El uso de closures permite que el sistema sea más flexible y que las reglas puedan adaptarse sin modificar de forma extensa la lógica principal.
 
-## Funciones puras
+### Funciones puras
 
 Las funciones puras son aquellas que producen siempre el mismo resultado cuando reciben los mismos datos y no modifican elementos externos. En el proyecto, este tipo de funciones es importante para mantener una lógica más predecible y fácil de probar.
 
@@ -1534,7 +1472,7 @@ Dentro del sistema, las funciones puras pueden utilizarse para:
 
 Su principal ventaja es que facilitan las pruebas unitarias y reducen errores causados por modificaciones inesperadas de datos externos.
 
-## Relación con los módulos del sistema
+### Relación con los módulos del sistema
 
 La programación funcional puede aportar valor en varios módulos del Sistema de Gestión de Libros Electrónicos.
 
@@ -1548,7 +1486,7 @@ En el módulo de reportes, puede facilitar el conteo, clasificación y análisis
 
 En el módulo de seguridad, puede apoyar validaciones específicas sin mezclar reglas de negocio con lógica de controladores.
 
-## Ventajas para el proyecto
+### Ventajas para el proyecto
 
 La aplicación de programación funcional en Go aporta varias ventajas al desarrollo del sistema.
 
@@ -1562,7 +1500,7 @@ Ayuda a mantener el código más predecible, ya que reduce los efectos secundari
 
 Favorece la escalabilidad del sistema, porque permite agregar nuevas reglas, filtros o validaciones sin reestructurar completamente el código existente.
 
-## Limitaciones
+### Limitaciones
 
 Aunque Go permite aplicar principios funcionales, no debe tratarse como un lenguaje funcional puro. Forzar demasiada abstracción puede hacer que el código sea más difícil de leer y mantener.
 
@@ -1570,9 +1508,9 @@ Por esta razón, la programación funcional debe utilizarse únicamente donde ap
 
 Los controladores deben conservar una estructura simple, enfocada en recibir solicitudes y devolver respuestas. Los repositorios deben mantenerse orientados al acceso a datos. La lógica funcional debe ubicarse donde realmente mejore la organización del sistema.
 
-# Estructura de la Gestión del Sistema
+## Estructura de la Gestión del Sistema
 
-## Organización de paquetes del sistema
+#### Organización de paquetes del sistema
 
 El Sistema de Gestión de Libros Electrónicos utilizará una arquitectura modular organizada mediante paquetes en Golang con el objetivo de mantener el código limpio, escalable y fácil de mantener.
 
@@ -1593,7 +1531,7 @@ Esto facilitará el trabajo colaborativo y permitirá realizar mantenimiento o a
 
 ---
 
-# Estructura general del proyecto
+### Estructura general del proyecto
 
 ```text
 sistema-libros-electronicos/
@@ -1620,9 +1558,9 @@ sistema-libros-electronicos/
 └── go.sum
 ```
 
-# Explicación de Paquetes
+### Explicación de Paquetes
 
-## cmd/
+#### cmd/
 
 Este paquete contiene el punto de entrada principal del sistema mediante el archivo `main.go`.
 
@@ -1635,7 +1573,7 @@ Su función es:
 
 ---
 
-## internal/config/
+#### internal/config/
 
 Este paquete administra toda la configuración del sistema.
 
@@ -1648,7 +1586,7 @@ Permite:
 
 ---
 
-## internal/models/
+#### internal/models/
 
 Contiene las estructuras principales del sistema utilizando structs de Go.
 
@@ -1664,7 +1602,7 @@ Estas estructuras representan las tablas de la base de datos.
 
 ---
 
-## internal/handlers/
+#### internal/handlers/
 
 Este paquete gestiona las solicitudes HTTP de la API REST.
 
@@ -1677,7 +1615,7 @@ Sus funciones son:
 
 ---
 
-## internal/services/
+#### internal/services/
 
 El paquete services contiene la lógica de negocio del sistema.
 
@@ -1692,7 +1630,7 @@ Esta capa conecta los handlers con los repositories.
 
 ---
 
-## internal/repositories/
+#### internal/repositories/
 
 Este paquete maneja el acceso a la base de datos.
 
@@ -1708,7 +1646,7 @@ Se utilizará GORM para facilitar la comunicación con PostgreSQL.
 
 ---
 
-## internal/middleware/
+#### internal/middleware/
 
 Contiene middlewares para la seguridad y control de acceso del sistema.
 
@@ -1722,7 +1660,7 @@ Permite implementar:
 
 ---
 
-## internal/routes/
+#### internal/routes/
 
 Este paquete organiza las rutas de la API REST.
 
@@ -1738,7 +1676,7 @@ Las rutas estarán separadas por módulos para mantener orden en el proyecto.
 
 ---
 
-## internal/database/
+#### internal/database/
 
 Este paquete administra la conexión principal con PostgreSQL.
 
@@ -1751,7 +1689,7 @@ Sus funciones son:
 
 ---
 
-## pkg/
+#### pkg/
 
 El paquete pkg almacenará utilidades reutilizables para distintos módulos del sistema.
 
@@ -1765,7 +1703,7 @@ Ejemplos:
 
 ---
 
-## docs/
+#### docs/
 
 Este directorio contendrá documentación técnica del proyecto como:
 
@@ -1774,7 +1712,7 @@ Este directorio contendrá documentación técnica del proyecto como:
 - manuales
 - reportes técnicos
 
-# Base de Datos Recomendada
+## Base de Datos Recomendada
 
 Para el desarrollo del Sistema de Gestión de Libros Electrónicos se recomienda utilizar PostgreSQL como sistema gestor de base de datos principal.
 
@@ -1796,13 +1734,13 @@ El uso de PostgreSQL permitirá que toda esta información se gestione de manera
 
 ---
 
-# ¿Por qué se eligió PostgreSQL?
+### ¿Por qué se eligió PostgreSQL?
 
 Se eligió PostgreSQL porque ofrece múltiples ventajas para proyectos backend desarrollados en Golang.
 
 Entre las principales razones podemos destacar:
 
-## Seguridad
+#### Seguridad
 
 PostgreSQL posee sistemas avanzados de protección de datos y control de accesos.
 
@@ -1817,7 +1755,7 @@ Además, se integrará con autenticación JWT para reforzar la seguridad del sis
 
 ---
 
-## Escalabilidad
+#### Escalabilidad
 
 La plataforma podrá crecer progresivamente sin afectar el rendimiento del sistema.
 
@@ -1832,7 +1770,7 @@ Esto resulta importante para una biblioteca virtual donde constantemente existir
 
 ---
 
-## Compatibilidad con Golang
+#### Compatibilidad con Golang
 
 PostgreSQL tiene excelente integración con Golang mediante librerías modernas como:
 
@@ -1852,7 +1790,7 @@ Gracias a esto, el desarrollo backend será más organizado y eficiente.
 
 ---
 
-# Relación entre las tablas
+### Relación entre las tablas
 
 La base de datos trabajará mediante relaciones entre distintas entidades del sistema.
 
@@ -1867,9 +1805,9 @@ Estas relaciones permitirán mantener una estructura organizada y evitar duplica
 
 ---
 
-# Tablas principales del sistema
+### Tablas principales del sistema
 
-## Tabla Usuarios
+#### Tabla Usuarios
 
 Esta tabla almacenará toda la información relacionada con las personas registradas dentro de la plataforma.
 
@@ -1890,7 +1828,7 @@ Los roles permitirán diferenciar:
 
 ---
 
-## Tabla Libros
+#### Tabla Libros
 
 Contendrá el catálogo digital de libros electrónicos disponibles dentro del sistema.
 
@@ -1908,7 +1846,7 @@ Esta tabla permitirá organizar correctamente la biblioteca virtual.
 
 ---
 
-## Tabla Préstamos
+#### Tabla Préstamos
 
 Registrará los préstamos digitales realizados por los usuarios.
 
@@ -1925,7 +1863,7 @@ Esta tabla permitirá llevar control sobre la disponibilidad de los libros elect
 
 ---
 
-## Tabla Descargas
+#### Tabla Descargas
 
 Permitirá almacenar el historial de descargas realizadas dentro de la plataforma.
 
@@ -1940,7 +1878,7 @@ Esto ayudará a generar estadísticas y reportes administrativos.
 
 ---
 
-# Beneficios de la base de datos en el sistema
+### Beneficios de la base de datos en el sistema
 
 La implementación de PostgreSQL permitirá:
 
@@ -1953,9 +1891,9 @@ La implementación de PostgreSQL permitirá:
 - estabilidad del sistema
 - soporte para múltiples usuarios
 
-# Paquetes de Terceros Recomendados
+## Paquetes de Terceros Recomendados
 
-## Descripción general
+### Descripción general
 
 Para el desarrollo del Sistema de Gestión de Libros Electrónicos en Go, se recomienda utilizar paquetes de terceros que permitan construir un backend organizado, seguro y mantenible.
 
@@ -1963,7 +1901,7 @@ La selección de estos paquetes responde a las necesidades principales del proye
 
 No se recomienda agregar librerías innecesarias, ya que esto puede aumentar la complejidad del sistema sin aportar beneficios reales. Por esta razón, los paquetes seleccionados se enfocan únicamente en funciones necesarias para la arquitectura propuesta.
 
-## Paquetes recomendados
+### Paquetes recomendados
 
 | Paquete | Función principal |
 |---|---|
@@ -1975,9 +1913,9 @@ No se recomienda agregar librerías innecesarias, ya que esto puede aumentar la 
 | `github.com/spf13/viper` | Manejo centralizado de variables de configuración y entorno. |
 | `github.com/gin-contrib/cors` | Configuración de permisos CORS para permitir la comunicación entre frontend y backend. |
 
-## Justificación de los paquetes
+### Justificación de los paquetes
 
-### Gin Web Framework
+#### Gin Web Framework
 
 Gin será utilizado para construir la API REST del sistema. Este paquete permite definir rutas, recibir solicitudes HTTP, procesar datos enviados por el cliente y devolver respuestas en formato JSON.
 
@@ -1985,7 +1923,7 @@ Dentro del proyecto, Gin se relaciona directamente con la capa de controladores,
 
 Su uso resulta adecuado porque permite estructurar el backend de forma clara y facilita la creación de endpoints para cada módulo del sistema.
 
-### GORM
+#### GORM
 
 GORM será utilizado como ORM para facilitar la interacción entre el backend y la base de datos. Su función principal será permitir operaciones de creación, lectura, actualización y eliminación de registros sin depender completamente de consultas SQL manuales.
 
@@ -1993,7 +1931,7 @@ En el proyecto, GORM se aplicará principalmente en la capa de repositorios, don
 
 Este paquete ayuda a mantener una separación más clara entre la lógica de negocio y la lógica de acceso a datos.
 
-### Driver PostgreSQL para GORM
+#### Driver PostgreSQL para GORM
 
 El paquete `gorm.io/driver/postgres` será necesario para conectar GORM con PostgreSQL, que es el sistema de base de datos definido en la arquitectura del proyecto.
 
@@ -2001,7 +1939,7 @@ Este driver permite que el backend desarrollado en Go pueda comunicarse correcta
 
 Su inclusión es importante porque GORM requiere un driver específico según el motor de base de datos utilizado.
 
-### JWT
+#### JWT
 
 El paquete `github.com/golang-jwt/jwt/v5` será utilizado para implementar autenticación basada en tokens. Después de que un usuario inicie sesión correctamente, el sistema podrá generar un token JWT que será usado para validar futuras solicitudes.
 
@@ -2009,7 +1947,7 @@ Este paquete será importante para proteger rutas privadas del sistema y control
 
 Dentro del proyecto, JWT puede aplicarse especialmente en funciones relacionadas con inicio de sesión, autorización de usuarios y validación de permisos.
 
-### Bcrypt
+#### Bcrypt
 
 El paquete `golang.org/x/crypto/bcrypt` será utilizado para cifrar las contraseñas de los usuarios antes de almacenarlas en la base de datos.
 
@@ -2017,13 +1955,13 @@ Este paquete es necesario porque las contraseñas no deben guardarse en texto pl
 
 Su uso complementa el proceso de autenticación junto con JWT.
 
-### Viper
+#### Viper
 
 Viper será utilizado para manejar la configuración general del sistema. Este paquete permite centralizar valores como el puerto del servidor, la conexión a la base de datos, claves secretas, variables de entorno y otros parámetros necesarios para la ejecución del backend.
 
 Su uso evita escribir datos sensibles directamente en el código fuente y facilita la administración del sistema en distintos entornos, como desarrollo, pruebas o producción.
 
-### CORS
+#### CORS
 
 El paquete `github.com/gin-contrib/cors` será utilizado para configurar los permisos de comunicación entre el frontend y el backend.
 
@@ -2031,7 +1969,7 @@ Esto es importante porque el sistema contempla una interfaz cliente que deberá 
 
 Su uso ayuda a controlar de forma más segura la interacción entre la aplicación web y el backend desarrollado en Go.
 
-## Relación con la arquitectura del proyecto
+### Relación con la arquitectura del proyecto
 
 Los paquetes recomendados se relacionan con las diferentes capas del sistema de la siguiente manera:
 
@@ -2045,7 +1983,7 @@ Los paquetes recomendados se relacionan con las diferentes capas del sistema de 
 | Seguridad | JWT, Bcrypt, CORS |
 | Configuración | Viper |
 
-# Concurrencia en el Sistema
+## Concurrencia en el Sistema
 
 La concurrencia es uno de los conceptos más importantes implementados dentro del Sistema de Gestión de Libros Electrónicos.
 
@@ -2062,7 +2000,7 @@ Gracias a estas herramientas, el sistema podrá atender varios usuarios al mismo
 
 ---
 
-# ¿Por qué es importante la concurrencia?
+### ¿Por qué es importante la concurrencia?
 
 Dentro de una plataforma digital existirán múltiples acciones ejecutándose simultáneamente.
 
@@ -2088,13 +2026,13 @@ Por esta razón, la concurrencia resulta fundamental para mejorar:
 
 ---
 
-# Implementación de concurrencia en Golang
+### Implementación de concurrencia en Golang
 
 Golang posee un sistema de concurrencia moderno y eficiente que permite ejecutar múltiples tareas al mismo tiempo utilizando pocos recursos del servidor.
 
 La concurrencia será implementada principalmente mediante:
 
-## Goroutines
+#### Goroutines
 
 Las goroutines son funciones ligeras que pueden ejecutarse en segundo plano de manera simultánea.
 
@@ -2118,7 +2056,7 @@ Mientras un usuario descarga un libro electrónico, otro usuario podrá iniciar 
 
 ---
 
-# Uso de Channels
+### Uso de Channels
 
 Los channels son mecanismos de comunicación utilizados en Golang para permitir el intercambio seguro de información entre goroutines.
 
@@ -2136,11 +2074,11 @@ Los channels permitirán coordinar correctamente la información para evitar err
 
 ---
 
-# Procesos concurrentes dentro del sistema
+### Procesos concurrentes dentro del sistema
 
 La concurrencia será aplicada en diferentes módulos del proyecto.
 
-## Gestión de préstamos digitales
+#### Gestión de préstamos digitales
 
 Cuando varios usuarios soliciten préstamos simultáneamente, el sistema verificará la disponibilidad de los libros en tiempo real sin generar bloqueos.
 
@@ -2152,7 +2090,7 @@ Esto permitirá:
 
 ---
 
-## Gestión de descargas
+#### Gestión de descargas
 
 Las descargas de libros electrónicos podrán ejecutarse en segundo plano mediante goroutines.
 
@@ -2165,7 +2103,7 @@ Esto permitirá:
 
 ---
 
-## Generación de reportes
+#### Generación de reportes
 
 Los reportes estadísticos podrán generarse sin interrumpir el funcionamiento del sistema.
 
@@ -2180,29 +2118,29 @@ Todo esto podrá ejecutarse concurrentemente mientras otros usuarios continúan 
 
 ---
 
-# Beneficios de implementar concurrencia
+### Beneficios de implementar concurrencia
 
 La implementación de concurrencia dentro del Sistema de Gestión de Libros Electrónicos permitirá múltiples ventajas.
 
-## Mejor rendimiento
+#### Mejor rendimiento
 
 El sistema responderá más rápido incluso cuando existan muchos usuarios conectados simultáneamente.
 
 ---
 
-## Optimización de recursos
+#### Optimización de recursos
 
 Las goroutines utilizan pocos recursos del servidor, permitiendo mayor eficiencia en el procesamiento.
 
 ---
 
-## Escalabilidad
+#### Escalabilidad
 
 La plataforma podrá crecer progresivamente soportando más usuarios y operaciones sin afectar significativamente el rendimiento.
 
 ---
 
-## Procesamiento simultáneo
+#### Procesamiento simultáneo
 
 Múltiples tareas podrán ejecutarse al mismo tiempo:
 
@@ -2214,13 +2152,13 @@ Múltiples tareas podrán ejecutarse al mismo tiempo:
 
 ---
 
-## Mejor experiencia de usuario
+#### Mejor experiencia de usuario
 
 Los usuarios tendrán respuestas más rápidas y una navegación más fluida dentro de la plataforma.
 
 ---
 
-# Relación de la concurrencia con Golang
+### Relación de la concurrencia con Golang
 
 La concurrencia representa una de las características más importantes de Golang y uno de los motivos principales por los cuales fue elegido para el desarrollo del proyecto.
 
@@ -2236,15 +2174,7 @@ Por esta razón, implementar concurrencia en el Sistema de Gestión de Libros El
 
 ---
 
-# Conclusión
-
-En conclusión, la concurrencia permitirá que el sistema funcione de manera moderna, rápida y eficiente.
-
-Mediante el uso de goroutines y channels, la plataforma podrá gestionar múltiples usuarios y procesos simultáneamente manteniendo estabilidad, seguridad y buen rendimiento.
-
-La implementación de concurrencia ayudará a construir una biblioteca virtual escalable y preparada para soportar grandes cantidades de operaciones dentro del sistema.principales ventajas de Golang para aplicaciones backend modernas y escalables.
-
-# Flujo del Sistema
+## Flujo del Sistema
 
 El flujo del sistema representa el proceso general de funcionamiento del Sistema de Gestión de Libros Electrónicos desde que el usuario ingresa a la plataforma hasta que finaliza sus actividades dentro del sistema.
 
@@ -2264,7 +2194,7 @@ El flujo permitirá controlar paso a paso el funcionamiento de la plataforma vir
 
 ---
 
-# Inicio del sistema
+### Inicio del sistema
 
 El flujo inicia cuando el usuario accede a la plataforma digital mediante la aplicación o navegador web.
 
@@ -2277,7 +2207,7 @@ Esto permitirá controlar el acceso y garantizar que únicamente usuarios autori
 
 ---
 
-# Registro de usuario
+### Registro de usuario
 
 Si el usuario aún no posee una cuenta, deberá completar un proceso de registro.
 
@@ -2301,7 +2231,7 @@ Una vez completado el registro, el usuario podrá acceder a la plataforma.
 
 ---
 
-# Inicio de sesión y autenticación
+### Inicio de sesión y autenticación
 
 Cuando el usuario inicia sesión, el sistema validará sus credenciales mediante autenticación JWT.
 
@@ -2318,7 +2248,7 @@ Esto ayudará a proteger la información del sistema y evitar accesos no autoriz
 
 ---
 
-# Acceso al sistema
+### Acceso al sistema
 
 Después de la autenticación, el usuario ingresará al panel principal de la plataforma.
 
@@ -2326,7 +2256,7 @@ Dependiendo del tipo de usuario, el sistema mostrará diferentes funcionalidades
 
 Por ejemplo:
 
-## Administradores
+#### Administradores
 
 Podrán:
 
@@ -2336,7 +2266,7 @@ Podrán:
 - generar reportes
 - controlar usuarios
 
-## Usuarios lectores
+#### Usuarios lectores
 
 Podrán:
 
@@ -2349,7 +2279,7 @@ Esto permitirá mantener control de permisos y seguridad dentro del sistema.
 
 ---
 
-# Gestión y búsqueda de libros electrónicos
+### Gestión y búsqueda de libros electrónicos
 
 Una de las funciones principales del sistema será la consulta del catálogo digital.
 
@@ -2367,7 +2297,7 @@ Esto facilitará el acceso rápido a la información y mejorará la experiencia 
 
 ---
 
-# Selección del libro
+### Selección del libro
 
 Después de encontrar un libro, el usuario podrá visualizar información detallada relacionada con:
 
@@ -2386,7 +2316,7 @@ El sistema permitirá decidir si el usuario desea:
 
 ---
 
-# Validación de disponibilidad
+### Validación de disponibilidad
 
 Antes de autorizar un préstamo digital, el sistema verificará automáticamente si el libro se encuentra disponible.
 
@@ -2403,7 +2333,7 @@ En caso contrario, el sistema mostrará un mensaje indicando que el recurso no s
 
 ---
 
-# Registro del préstamo digital
+### Registro del préstamo digital
 
 Una vez aprobado el préstamo, el sistema almacenará automáticamente la información dentro de la base de datos.
 
@@ -2419,7 +2349,7 @@ Esto permitirá mantener un historial organizado de actividades realizadas dentr
 
 ---
 
-# Descarga de libros electrónicos
+### Descarga de libros electrónicos
 
 Después del préstamo, el usuario podrá descargar el archivo digital.
 
@@ -2435,7 +2365,7 @@ Además, el sistema registrará automáticamente el historial de descargas para 
 
 ---
 
-# Gestión de reportes
+### Gestión de reportes
 
 El sistema también permitirá generar reportes administrativos relacionados con el funcionamiento de la plataforma.
 
@@ -2451,7 +2381,7 @@ Estos reportes ayudarán a mejorar la administración y control de la biblioteca
 
 ---
 
-# Cierre de sesión
+### Cierre de sesión
 
 Finalmente, el usuario podrá cerrar sesión de forma segura.
 
@@ -2465,7 +2395,7 @@ Esto permitirá mantener seguridad y control de accesos dentro de la plataforma.
 
 ---
 
-# Importancia del flujo del sistema
+### Importancia del flujo del sistema
 
 El flujo general del sistema permitirá:
 
@@ -2480,7 +2410,7 @@ Además, ayudará a que el sistema funcione de manera estructurada, moderna y ef
 
 ---
 
-# Resumen general del flujo
+### Resumen general del flujo
 
 El funcionamiento general del sistema seguirá el siguiente proceso:
 
