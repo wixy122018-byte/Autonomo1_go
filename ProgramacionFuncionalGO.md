@@ -101,8 +101,3 @@ Por esta razón, la programación funcional debe utilizarse únicamente donde ap
 
 Los controladores deben conservar una estructura simple, enfocada en recibir solicitudes y devolver respuestas. Los repositorios deben mantenerse orientados al acceso a datos. La lógica funcional debe ubicarse donde realmente mejore la organización del sistema.
 
-## Conclusión
-
-La programación funcional en Go se aplicará como una estrategia complementaria dentro del Sistema de Gestión de Libros Electrónicos. Su objetivo principal es mejorar el procesamiento de datos, reducir la repetición de código y facilitar el mantenimiento de la lógica del sistema.
-
-Su implementación será útil principalmente en operaciones de filtrado, validación, transformación de datos y generación de reportes. De esta manera, el proyecto podrá mantener una estructura modular, clara y escalable sin alejarse del estilo natural de desarrollo en Go.
