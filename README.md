@@ -1,418 +1,470 @@
-ARQUITECTURA DEL SISTEMA DE GESTIÓN DE LIBROS ELECTRÓNICOS
-El Sistema de Gestión de Libros Electrónicos será desarrollado utilizando el lenguaje de programación Go, implementando una arquitectura por capas que permita mantener el sistema organizado, seguro, escalable y fácil de mantener.
-La arquitectura estará basada en el siguiente flujo:
-Cliente
-   ↓
-API REST
-   ↓
-Controladores
-   ↓
-Servicios
-   ↓
-Repositorios
-   ↓
-Base de Datos
-Este tipo de arquitectura permite dividir el sistema en componentes organizados, donde cada capa tiene responsabilidades específicas. Gracias a esta separación, el sistema será más fácil de desarrollar, mantener, escalar y actualizar.
-La arquitectura también ayuda a mejorar la seguridad, reutilización del código y organización interna del proyecto, permitiendo que cada componente trabaje de forma independiente pero conectada con los demás.
-ARQUITECTURA GENERAL EN GO
-En Go el proyecto se organizará mediante paquetes y carpetas estructuradas para mantener un código limpio y modular.
-La estructura del proyecto será similar a la siguiente:
-/proyecto-libros
+# 📚 Sistema de Gestión de Libros Electrónicos
+
+> Un sistema moderno y escalable desarrollado en **Go** para la gestión integral de bibliotecas digitales
+
+[![Go](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat-square&logo=go)](https://golang.org)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=flat-square&logo=mysql)](https://www.mysql.com)
+[![Gin](https://img.shields.io/badge/Gin-v1-00A86B?style=flat-square)](https://gin-gonic.com)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
+
+---
+
+## 📑 Tabla de Contenidos
+
+- [🎯 Descripción del Proyecto](#descripción)
+- [✨ Características Principales](#características)
+- [🏗️ Arquitectura](#arquitectura)
+- [👥 Roles y Usuarios](#roles)
+- [⚙️ Tecnologías](#tecnologías)
+- [���� Quick Start](#quick-start)
+- [📂 Estructura del Proyecto](#estructura)
+- [🔄 Flujo del Sistema](#flujo)
+- [🛠️ Instalación](#instalación)
+- [📖 Documentación Adicional](#documentación)
+- [👨‍💻 Desarrollador](#desarrollador)
+
+---
+
+## 🎯 Descripción del Proyecto {#descripción}
+
+El **Sistema de Gestión de Libros Electrónicos** es una plataforma web integral que permite a bibliotecas y instituciones educativas administrar colecciones de libros digitales de forma eficiente.
+
+**Características clave:**
+- 📱 Interfaz responsiva e intuitiva
+- 🔐 Autenticación y autorización por roles
+- 📖 Gestión completa de catálogo de libros
+- 🎫 Sistema de préstamos y reservas
+- 📊 Reportes y estadísticas
+- ⚡ Alto rendimiento con Go
+
+---
+
+## ✨ Características Principales {#características}
+
+### 👤 Gestión de Usuarios
+- ✅ Registro y autenticación de usuarios
+- ✅ Gestión de roles (Administrador, Bibliotecario, Lector)
+- ✅ Control de permisos granulares
+- ✅ Historial de actividades
+
+### 📚 Administración de Libros
+- ✅ Catálogo digital completo
+- ✅ Búsqueda avanzada por título, autor, categoría
+- ✅ Control de disponibilidad
+- ✅ Gestión de metadatos (ISBN, descripción, portada)
+
+### 🎫 Sistema de Préstamos
+- ✅ Solicitud de préstamos
+- ✅ Cálculo automático de fechas de devolución
+- ✅ Notificaciones de vencimiento
+- ✅ Historial de préstamos
+
+### 📌 Reservas y Disponibilidad
+- ✅ Sistema de reservas para libros ocupados
+- ✅ Cola de espera inteligente
+- ✅ Notificaciones automáticas
+- ✅ Gestión de reservas caducadas
+
+### 📊 Reportes y Análisis
+- ✅ Estadísticas de uso
+- ✅ Reportes de préstamos
+- ✅ Análisis de popularidad
+- ✅ Dashboard administrativo
+
+---
+
+## 🏗️ Arquitectura {#arquitectura}
+
+### Arquitectura por Capas
+
+El sistema implementa una **arquitectura por capas** que garantiza separación de responsabilidades, escalabilidad y fácil mantenimiento.
+
+```
+┌─────────────────────────────────────┐
+│  🌐 Cliente (HTML5/CSS3/JavaScript) │
+└──────────────────┬──────────────────┘
+                   │ HTTP/JSON
+┌──────────────────▼──────────────────┐
+│      🔀 API REST (Gin Framework)    │
+└──────────────────┬──────────────────┘
+                   │
+┌──────────────────▼──────────────────┐
+│   🎮 Controladores (Validación)     │
+└──────────────────┬──────────────────┘
+                   │
+┌──────────────────▼──────────────────┐
+│    ⚙️ Servicios (Lógica Negocio)    │
+└──────────────────┬──────────────────┘
+                   │
+┌──────────────────▼──────────────────┐
+│   📦 Repositorios (Acceso a Datos)  │
+└──────────────────┬──────────────────┘
+                   │
+┌──────────────────▼──────────────────┐
+│      💾 Base de Datos (MySQL)       │
+└─────────────────────────────────────┘
+```
+
+### Ventajas de esta Arquitectura
+
+| Aspecto | Beneficio |
+|---------|-----------|
+| **Separación de Responsabilidades** | Cada capa tiene un propósito específico |
+| **Mantenibilidad** | Cambios aislados por capas, sin afectar otras |
+| **Escalabilidad** | Fácil de extender sin rediseño |
+| **Reutilización** | Componentes modulares y reutilizables |
+| **Testabilidad** | Pruebas unitarias independientes por capa |
+| **Seguridad** | Validación en múltiples puntos |
+
+---
+
+## 👥 Roles y Usuarios {#roles}
+
+### Tabla de Roles y Permisos
+
+| Rol | Permisos Clave | Funcionalidades |
+|-----|-----------------|-----------------|
+| **👨‍💼 Administrador** | Control total del sistema | • Gestionar usuarios<br>• Administrar libros<br>• Visualizar reportes completos<br>• Configurar parámetros del sistema<br>• Auditoría y logs |
+| **📚 Bibliotecario** | Gestión de contenido | • Registrar nuevos libros<br>• Gestionar préstamos<br>• Controlar reservas<br>• Actualizar información<br>• Generar reportes básicos |
+| **👨‍🎓 Lector/Estudiante** | Acceso limitado | • Buscar libros<br>• Solicitar préstamos<br>• Reservar libros<br>• Consultar historial<br>• Renovar préstamos |
+
+---
+
+## ⚙️ Tecnologías {#tecnologías}
+
+### Backend
+- **Go 1.21+** - Lenguaje principal
+- **Gin Framework** - Framework web rápido
+- **GORM** - ORM para Go
+- **MySQL 8.0+** - Base de datos relacional
+
+### Frontend
+- **HTML5** - Estructura
+- **CSS3** - Estilos
+- **JavaScript (ES6+)** - Interactividad
+
+### Herramientas de Desarrollo
+- **Docker** - Containerización
+- **Postman** - Testing de APIs
+- **Git** - Control de versiones
+
+---
+
+## 🚀 Quick Start {#quick-start}
+
+### Requisitos Previos
+```bash
+Go >= 1.21
+MySQL >= 8.0
+Git
+```
+
+### Instalación Rápida
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/wixy122018-byte/Autonomo1_go.git
+cd Autonomo1_go
+
+# 2. Instalar dependencias
+go mod download
+
+# 3. Configurar base de datos
+# Editar config/config.go con tus credenciales MySQL
+
+# 4. Ejecutar la aplicación
+go run main.go
+
+# 5. Acceder a la aplicación
+# Cliente: http://localhost:3000
+# API: http://localhost:8080
+```
+
+---
+
+## 📂 Estructura del Proyecto {#estructura}
+
+```
+Autonomo1_go/
 │
-├── main.go
+├── main.go                          # Punto de entrada
 │
-├── controllers/
-├── services/
-├── repositories/
-├── models/
-├── routes/
-├── database/
-├── middleware/
-├── utils/
-└── config/
+├── controllers/                     # 🎮 Captura de solicitudes
+│   ├── user_controller.go
+│   ├── book_controller.go
+│   ├── loan_controller.go
+│   └── reservation_controller.go
+│
+├── services/                        # ⚙️ Lógica de negocio
+│   ├── user_service.go
+│   ├── book_service.go
+│   ├── loan_service.go
+│   └── reservation_service.go
+│
+├── repositories/                    # 📦 Acceso a datos
+│   ├── user_repository.go
+│   ├── book_repository.go
+│   ├── loan_repository.go
+│   └── reservation_repository.go
+│
+├── models/                          # 📊 Estructuras de datos
+│   ├── user.go
+│   ├── book.go
+│   ├── loan.go
+│   └── reservation.go
+│
+├── routes/                          # 🛣️ Rutas de la API
+│   └── routes.go
+│
+├── middleware/                      # 🔐 Middlewares
+│   ├── auth_middleware.go
+│   └── cors_middleware.go
+│
+├── database/                        # 💾 Conexión BD
+│   └── connection.go
+│
+├── utils/                           # 🛠️ Funciones auxiliares
+│   ├── validators.go
+│   └── helpers.go
+│
+├── config/                          # ⚙️ Configuración
+│   └── config.go
+│
+├── frontend/                        # 🌐 Interfaz usuario
+│   ├── index.html
+│   ├── css/
+│   └── js/
+│
+├── go.mod                           # Dependencias Go
+├── go.sum                           # Hash de dependencias
+├── .env.example                     # Variables de entorno
+├── ARQUITECTURA_Y_TECNOLOGIA.md    # Documentación técnica
+└── README.md                        # Este archivo
+```
 
-Cada carpeta tendrá una función específica dentro de la arquitectura.
+---
 
+## 🔄 Flujo del Sistema {#flujo}
 
-1. CAPA CLIENTE
-La capa cliente corresponde a la interfaz visual del sistema, es decir, la parte con la que interactúan directamente los usuarios. Esta capa es responsable de mostrar información y permitir que las personas utilicen las funcionalidades disponibles dentro de la plataforma.
-Aquí se encuentran todas las pantallas, formularios, botones y menús que permiten navegar dentro del sistema.
-Usuarios que interactúan con esta capa
-El sistema tendrá distintos tipos de usuarios:
-Administrador	Bibliotecario	Lector o estudiante
-Tiene control total del sistema:
-•	Gestiona usuarios. 
-•	Administra libros. 
-•	Visualiza reportes. 
-•	Configura parámetros del sistema. 
-	Se encarga de administrar el contenido bibliográfico:
-•	Registra libros. 
-•	Gestiona préstamos. 
-•	Controla reservas. 
-•	Actualiza información. 
-	Es el usuario final que utiliza la biblioteca digital:
-•	Busca libros. 
-•	Solicita préstamos. 
-•	Reserva libros. 
-•	Consulta historial. 
+### Ciclo Completo de una Solicitud
 
-Funciones principales de la capa cliente
-Inicio de sesión
-Permite autenticar usuarios mediante:
-•	Correo electrónico. 
-•	Contraseña. 
-El sistema validará la información antes de enviarla al servidor.
-
-
-
-
-
-
-
-Inicio de sesión	Visualización de libros	Búsqueda y filtros	Solicitudes y reservas	Panel administrativo
-Permite autenticar usuarios mediante:
-Correo electrónico.
-Contraseña. 
-El sistema validará la información antes de enviarla al servidor.
-	Los usuarios podrán:
-Ver catálogo digital. 
-Consultar autores. 
-Leer descripciones. 
-Revisar disponibilidad. 
-	La interfaz permitirá buscar libros mediante:
-Título. 
-Autor. 
-Categoría. 
-Palabras clave. 
-
-	Los usuarios podrán:
-Solicitar préstamos. 
-Reservar libros ocupados. 
-Consultar historial. 
-	Los administradores tendrán acceso a:
-Gestión de usuarios. 
-Reportes. 
-Estadísticas. 
-Configuraciones. 
-
-
-Tecnologías utilizadas en la capa cliente
-La interfaz será desarrollada utilizando:
-•	HTML5 
-•	CSS3 
-•	JavaScript 
-Estas tecnologías permitirán construir una plataforma:
-•	Dinámica. 
-•	Interactiva. 
-•	Responsiva. 
-•	Compatible con dispositivos modernos. 
-Funcionamiento de la capa cliente
-Cuando el usuario realiza una acción:
-1.	La interfaz captura la información. 
-2.	Se genera una solicitud HTTP. 
-3.	La solicitud es enviada hacia la API REST desarrollada en Go. 
-4.	El sistema procesa la operación. 
-5.	La respuesta regresa al cliente. 
-La capa cliente únicamente se encarga de interacción visual y no procesa lógica compleja del sistema.
-
-
-Ejemplo práctico
-Si un usuario busca un libro:
-•	Escribe el nombre del libro. 
-•	La interfaz envía una petición GET. 
-•	La API procesa la solicitud. 
-•	Los resultados se muestran en pantalla.
-
-2. CAPA API REST
-Gin Framework
-Gin es un framework para Go que permite construir APIs rápidas y eficientes.
-La API REST actuará como puente entre la interfaz y el backend.
-La API permite que diferentes aplicaciones puedan comunicarse con el sistema, incluyendo:
-•	Aplicaciones web. 
-•	Aplicaciones móviles. 
-•	Servicios externos. 
-
-¿Qué es una API REST?
-Una API REST es un conjunto de rutas o endpoints que permiten enviar y recibir información.
-Cada funcionalidad del sistema tendrá una ruta específica.
-Ejemplos de endpoints
-POST /login
-GET /libros
-POST /prestamos
-PUT /usuarios/:id
-DELETE /reservas/:id
-Cada endpoint representa una funcionalidad concreta del sistema.
-Funciones principales de la API REST
-Recepción de solicitudes
-La API recibe solicitudes enviadas desde el cliente.
-
-Ejemplos:
-•	Iniciar sesión. 
-•	Registrar usuarios. 
-•	Buscar libros. 
-•	Solicitar préstamos. 
-
-Procesamiento de métodos HTTP
-La API trabaja con métodos como:
-GET	POST	PUT
-	DELETE
-Obtiene información.
-Ejemplo:
-GET /libros
-Sirve para consultar libros registrados.
-	Envía información nueva.
-Ejemplo:
-POST /usuarios
-Sirve para registrar nuevos usuarios.
-	Actualiza información existente.
-Ejemplo:
-PUT /libros/15
-Actualiza datos de un libro.	Elimina información.
-Ejemplo:
-DELETE /reservas/10
-Elimina una reserva registrada.
-
-
-
-Respuestas de la API
-La información será enviada generalmente en formato JSON.
-Ejemplo:
-{
-  "titulo": "Redes Informáticas",
-  "autor": "Autor Ejemplo",
-  "categoria": "Tecnología",
-  "disponible": true
-}
-
-Importancia de la API REST
-La API permite:
-•	Separar frontend y backend. 
-•	Facilitar integración futura. 
-•	Mejorar organización. 
-•	Centralizar servicios. 
-•	Permitir escalabilidad. 
-Implementación en Go
-En Go las rutas se configurarán mediante Gin.
-Ejemplo conceptual:
-router.GET("/libros", controllers.ObtenerLibros)
-Esto significa que cuando el usuario consulte /libros, la solicitud será enviada al controlador correspondiente.
-
-3. CAPA DE CONTROLADORES
-Los controladores son responsables de recibir las solicitudes provenientes de la API REST y coordinar el flujo interno del sistema.
-Funcionan como intermediarios entre la API y la lógica de negocio.
-Funciones principales de los controladores
-Recepción de solicitudes
-Los controladores reciben peticiones enviadas desde la API.
-Por ejemplo:
-•	Solicitudes de login. 
-•	Registro de libros. 
-•	Préstamos. 
-•	Consultas. 
-
-Validación inicial de datos
-Antes de procesar una operación, el controlador verifica:
-•	Campos obligatorios. 
-•	Tipos de datos. 
-•	Formatos correctos. 
-•	Parámetros válidos. 
-Ejemplo:
-•	Validar que el correo tenga formato correcto. 
-•	Confirmar que la contraseña no esté vacía. 
-
-
-Ejemplo en Go
-func ObtenerLibros(c *gin.Context) {
-    libros := services.ListarLibros()
-    c.JSON(200, libros)
-
-Envío hacia servicios
-Una vez validada la información, el controlador envía los datos hacia la capa de servicios.
-Ejemplo práctico
-Cuando un usuario inicia sesión:
-1.	El cliente envía correo y contraseña. 
-2.	La API recibe la solicitud. 
-3.	El controlador valida los datos. 
-4.	Envía la información al servicio de autenticación. 
-5.	Espera respuesta. 
-6.	Devuelve resultado al usuario. 
-
-Importancia de los controladores
-Permiten:
-•	Organizar solicitudes. 
-•	Validar entradas. 
-•	Controlar respuestas. 
-•	Mantener código limpio. 
-
-
-4. CAPA DE SERVICIOS /services
-La capa de servicios contiene toda la lógica de negocio del sistema.
-Es considerada la parte más importante porque aquí se ejecutan las reglas y procesos internos que permiten el funcionamiento de la aplicación.
-Los servicios toman decisiones y controlan cómo debe comportarse el sistema.
-
-
-
-Funciones principales de los servicios
-Gestión de usuarios	Gestión de libros	Gestión de préstamos	Gestión de reservas
-	Seguridad
-Permite:
-Registrar usuarios. 
-Validar credenciales. 
-Gestionar roles. 
-Controlar permisos. 
-	Se encarga de:
-Registrar libros. 
-Actualizar información. 
-Verificar disponibilidad. 
-Clasificar categorías.	Controla:
-Solicitudes de préstamo. 
-Fechas de devolución. 
-Disponibilidad. 
-Historiales. 
-	Permite:
-Registrar reservas. 
-Notificar disponibilidad. 
-Gestionar listas de espera. 
-	Implementa:
-Encriptación de contraseñas. 
-Validación de sesiones. 
-Autenticación. 
-Protección de información
-Ejemplo detallado de funcionamiento
-Cuando un estudiante solicita un libro:
-1.	El servicio verifica si el usuario existe. 
-2.	Comprueba que el libro esté disponible. 
-3.	Revisa límite de préstamos. 
-4.	Registra la solicitud. 
-5.	Actualiza disponibilidad. 
-6.	Genera respuesta final. 
-Toda esta lógica ocurre dentro de la capa de servicios.
-
-Importancia de la capa de servicios
-Permite:
-•	Centralizar lógica del negocio. 
-•	Reutilizar procesos. 
-•	Mantener organización. 
-•	Facilitar mantenimiento. 
-
-Ejemplo  en Go
-func ListarLibros() []models.Libro {
-    return repositories.ObtenerLibros()
-
-
-5. CAPA DE REPOSITORIOS
-La capa de repositorios es responsable de comunicarse directamente con la base de datos.
-Su función es ejecutar operaciones relacionadas con almacenamiento y recuperación de información.
-
-Funciones principales de los repositorios
-Consultas de datos
-	Inserción de información	Actualización de registros
-	Eliminación de información
-
-Permite:
-•	Buscar usuarios. 
-•	Consultar libros. 
-•	Obtener préstamos. 
-•	Revisar reservas. 
-	Registra:
-•	Nuevos usuarios. 
-•	Nuevos libros. 
-•	Préstamos. 
-•	Reportes. 	Permite modificar:
-•	Datos de usuarios. 
-•	Información de libros. 
-•	Estados de préstamos. 
-	Elimina:
-•	Reservas. 
-•	Registros innecesarios. 
-•	Datos obsoletos. 
-
-
-Ejemplo práctico
-Cuando se registra un préstamo:
-1.	El servicio envía la solicitud. 
-2.	El repositorio genera la consulta SQL. 
-3.	La información se guarda en la base de datos. 
-
-
-
-
-Importancia de los repositorios
-Permiten:
-•	Separar lógica y datos. 
-•	Mejorar organización. 
-•	Facilitar mantenimiento. 
-•	Optimizar consultas. 
-Ejemplo  en Go
-func ObtenerLibros() []models.Libro {
-    var libros []models.Libro
-    database.DB.Find(&libros)
-    return libros
-
-6. CAPA DE BASE DE DATOS
-La base de datos es la capa encargada de almacenar permanentemente toda la información del sistema.
-Se utilizará:
-MySQL
-MySQL permitirá administrar la información de forma segura, rápida y estructurada.
-
-Información almacenada
-Usuarios
-	Libros
-	Préstamos
-	Reservas
-	Reportes y auditorías
-
-Nombres. 
-Correos. 
-Contraseñas cifradas. 
-Roles. 
-	Títulos. 
-Autores. 
-Categorías. 
-Archivos digitales. 
-	Usuarios. 
-Fechas. 
-Estados. 
-	•	Fechas. 
-•	Disponibilidad. 
-•	Historiales. 	Actividades del sistema. 
-Logs. 
-Estadísticas. 
-
-
-
-
-
-
-Importancia de la base de datos
-Garantiza:
-•	Persistencia de información. 
-•	Seguridad de datos. 
-•	Integridad. 
-•	Disponibilidad. 
-•	Consultas rápidas. 
-Ejemplo de conexión
-dsn := "usuario:password@tcp(localhost:3306)/biblioteca"
-db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-
-FLUJO COMPLETO DEL SISTEMA
-1. El usuario interactúa con la interfaz web.
+```
+1️⃣  Usuario interactúa con la interfaz
                     ↓
-2. El cliente envía solicitud HTTP a la API REST.
+2️⃣  Cliente envía solicitud HTTP a la API REST
                     ↓
-3. Gin recibe la petición.
+3️⃣  Gin Router recibe y enruta la petición
                     ↓
-4. El controlador procesa y valida datos.
+4️⃣  Controlador procesa y valida datos
                     ↓
-5. El servicio ejecuta la lógica de negocio.
+5️⃣  Servicio ejecuta la lógica de negocio
                     ↓
-6. El repositorio consulta MySQL.
+6️⃣  Repositorio genera consultas SQL
                     ↓
-7. La base de datos devuelve resultados.
+7️⃣  Base de datos MySQL procesa la operación
                     ↓
-8. El sistema genera respuesta JSON.
+8️⃣  Datos fluyen de regreso por todas las capas
                     ↓
-9. La respuesta retorna al cliente.
-CONCLUSIÓN
-La arquitectura basada en Cliente, API REST, Controladores, Servicios, Repositorios y Base de Datos permite desarrollar un Sistema de Gestión de Libros Electrónicos organizado, seguro y escalable.
-La separación por capas facilita la administración del código, mejora el mantenimiento y permite que el sistema pueda crecer en el futuro incorporando nuevas funcionalidades sin afectar su estructura principal.
+9️⃣  Cliente recibe respuesta JSON
+                    ↓
+🔟 Interfaz se actualiza con los resultados
+```
 
+### Ejemplo Práctico: Búsqueda de Libro
+
+```
+Usuario escribe: "Clean Code"
+        ↓
+GET /api/libros?titulo=Clean%20Code
+        ↓
+Controlador valida parámetro de búsqueda
+        ↓
+Servicio ejecuta búsqueda
+        ↓
+Repositorio: SELECT * FROM libros WHERE titulo LIKE '%Clean Code%'
+        ↓
+MySQL retorna resultados
+        ↓
+JSON con libros encontrados
+        ↓
+Interfaz muestra resultados al usuario
+```
+
+---
+
+## 🛠️ Instalación {#instalación}
+
+### Opción 1: Instalación Local
+
+```bash
+# Clonar repositorio
+git clone https://github.com/wixy122018-byte/Autonomo1_go.git
+cd Autonomo1_go
+
+# Descargar dependencias
+go mod download
+
+# Configurar variables de entorno
+cp .env.example .env
+# Editar .env con tus valores
+
+# Crear base de datos
+mysql -u root -p < database/init.sql
+
+# Ejecutar aplicación
+go run main.go
+
+# La aplicación estará disponible en http://localhost:8080
+```
+
+### Opción 2: Usando Docker
+
+```bash
+# Construir imagen
+docker build -t autonomo1_go .
+
+# Ejecutar contenedor
+docker run -p 8080:8080 -p 3000:3000 autonomo1_go
+
+# Acceder a la aplicación
+open http://localhost:8080
+```
+
+### Variables de Entorno (.env)
+
+```env
+# Base de Datos
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=tu_password
+DB_NAME=biblioteca
+
+# Server
+SERVER_PORT=8080
+GIN_MODE=debug
+
+# JWT
+JWT_SECRET=tu_secret_key_aqui
+JWT_EXPIRATION=24
+```
+
+---
+
+## 📖 Documentación Adicional {#documentación}
+
+- **[ARQUITECTURA_Y_TECNOLOGIA.md](ARQUITECTURA_Y_TECNOLOGIA.md)** - Documentación técnica detallada
+- **[API_ENDPOINTS.md](API_ENDPOINTS.md)** - Lista completa de endpoints
+- **[GUIA_DESARROLLO.md](GUIA_DESARROLLO.md)** - Guía para desarrolladores
+- **[MODELO_DATOS.md](MODELO_DATOS.md)** - Esquema de base de datos
+
+---
+
+## 📊 Endpoints Principales de la API
+
+### Autenticación
+```
+POST   /api/auth/login          - Iniciar sesión
+POST   /api/auth/register       - Registrarse
+POST   /api/auth/logout         - Cerrar sesión
+```
+
+### Libros
+```
+GET    /api/libros              - Obtener catálogo
+GET    /api/libros/:id          - Obtener detalle
+POST   /api/libros              - Crear libro (Admin)
+PUT    /api/libros/:id          - Actualizar libro (Admin)
+DELETE /api/libros/:id          - Eliminar libro (Admin)
+```
+
+### Préstamos
+```
+GET    /api/prestamos           - Listar préstamos del usuario
+POST   /api/prestamos           - Crear préstamo
+PUT    /api/prestamos/:id       - Renovar préstamo
+DELETE /api/prestamos/:id       - Devolver préstamo
+```
+
+### Reservas
+```
+GET    /api/reservas            - Listar reservas del usuario
+POST   /api/reservas            - Crear reserva
+DELETE /api/reservas/:id        - Cancelar reserva
+```
+
+---
+
+## 🔒 Seguridad
+
+- ✅ **Encriptación de contraseñas** con bcrypt
+- ✅ **Autenticación JWT** para API
+- ✅ **CORS configurado** para desarrollo/producción
+- ✅ **Validación de entrada** en múltiples capas
+- ✅ **SQL Injection prevention** con GORM parametrizado
+- ✅ **Rate limiting** en endpoints críticos
+- ✅ **Logs de auditoría** de operaciones sensibles
+
+---
+
+## 📈 Rendimiento
+
+- ⚡ Desarrollado en **Go** para máximo rendimiento
+- 🚀 Consultas optimizadas en base de datos
+- 💨 Caché inteligente de datos frecuentes
+- 📊 Índices en tablas principales
+
+---
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Para cambios significativos:
+
+1. Fork el repositorio
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+---
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver archivo [LICENSE](LICENSE) para más detalles.
+
+---
+
+## 👨‍💻 Desarrollador {#desarrollador}
+
+**Leonardo Sánchez**
+- 🐱 GitHub: [@wixy122018-byte](https://github.com/wixy122018-byte)
+- 📧 Email: leonardo.sanchez@example.com
+
+---
+
+## 🙋 Soporte
+
+¿Preguntas o problemas?
+
+- 📖 Consulta la [documentación completa](ARQUITECTURA_Y_TECNOLOGIA.md)
+- 🐛 Abre un [issue](https://github.com/wixy122018-byte/Autonomo1_go/issues)
+- 💬 Inicia una [discusión](https://github.com/wixy122018-byte/Autonomo1_go/discussions)
+
+---
+
+## 📅 Información del Proyecto
+
+- **Versión**: 1.0.0
+- **Última actualización**: Mayo 2026
+- **Rama principal**: Leonardo_Sanchez
+- **Estado**: 🟢 En desarrollo activo
+
+---
+
+<div align="center">
+
+**⭐ Si te gusta este proyecto, considera darle una estrella en GitHub**
+
+[Ver Repositorio](https://github.com/wixy122018-byte/Autonomo1_go) | [Reportar Bug](https://github.com/wixy122018-byte/Autonomo1_go/issues) | [Solicitar Feature](https://github.com/wixy122018-byte/Autonomo1_go/issues)
+
+</div>
