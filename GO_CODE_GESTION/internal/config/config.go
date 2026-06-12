@@ -25,9 +25,14 @@ func GetEnv(key string, defaultValue string) string {
 }
 
 func GetServerPort() string {
-	return GetEnv("PORT", "8081")
+	return GetEnv("PORT", "8080")
 }
 
 func GetDatabaseDSN() string {
+	databaseURL := os.Getenv("DATABASE_URL")
+	if databaseURL != "" {
+		return databaseURL
+	}
+
 	return GetEnv("DATABASE_DSN", "host=localhost user=postgres password=qwerty dbname=digital_library port=8080 sslmode=disable")
 }
