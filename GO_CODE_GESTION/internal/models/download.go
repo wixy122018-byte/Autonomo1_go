@@ -8,3 +8,11 @@ type Download struct {
 	BookID       uint      `json:"book_id"`
 	DownloadDate time.Time `json:"download_date"`
 }
+
+func NewDownload(userID uint, book Book) Download {
+	return Download{
+		UserID:       userID,
+		BookID:       book.ID,
+		DownloadDate: time.Now(),
+	}
+}

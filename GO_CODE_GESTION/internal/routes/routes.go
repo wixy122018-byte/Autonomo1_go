@@ -4,6 +4,10 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"sistema-libros-electronicos/internal/database"
+	"sistema-libros-electronicos/internal/handlers"
+	"sistema-libros-electronicos/internal/repositories"
+	"sistema-libros-electronicos/internal/services"
 )
 
 func RegisterRoutes(router *gin.Engine) {
@@ -19,4 +23,23 @@ func RegisterRoutes(router *gin.Engine) {
 			"status": "ok",
 		})
 	})
+
+	bookRepository := repositories.NewGormBookRepository(database.DB)
+	downloadRepository := repositories.NewGormDownloadRepository(database.DB)
+
+	bookService := services.NewBookService(bookRepository)
+	downloadService := services.NewDownloadService(downloadRepository, bookRepository)
+
+	bookHandler := handlers.NewBookHandler(bookService)
+	downloadHandler := handlers.NewDownloadHandler(downloadService)
+
+	router.POST("/books", bookHandler.Create)
+	router.GET("/books", bookHandler.List)
+	router.GET("/books/search", bookHandler.Search)
+	router.GET("/books/:id", bookHandler.FindByID)
+	router.PUT("/books/:id", bookHandler.Update)
+	router.DELETE("/books/:id", bookHandler.Deactivate)
+
+	router.POST("/downloads", downloadHandler.Register)
+	router.GET("/downloads/history", downloadHandler.History)
 }
