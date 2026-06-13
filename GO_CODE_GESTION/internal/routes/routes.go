@@ -26,12 +26,19 @@ func RegisterRoutes(router *gin.Engine) {
 
 	bookRepository := repositories.NewGormBookRepository(database.DB)
 	downloadRepository := repositories.NewGormDownloadRepository(database.DB)
+	userRepository := repositories.NewGormUserRepository(database.DB)
 
 	bookService := services.NewBookService(bookRepository)
 	downloadService := services.NewDownloadService(downloadRepository, bookRepository)
+	authService := services.NewAuthService(userRepository)
 
 	bookHandler := handlers.NewBookHandler(bookService)
 	downloadHandler := handlers.NewDownloadHandler(downloadService)
+	authHandler := handlers.NewAuthHandler(authService)
+
+	router.POST("/users/register", authHandler.Register)
+	router.POST("/login", authHandler.Login)
+	router.GET("/users/me", authHandler.Me)
 
 	router.POST("/books", bookHandler.Create)
 	router.GET("/books", bookHandler.List)
