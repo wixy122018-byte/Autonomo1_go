@@ -75,6 +75,16 @@ curl http://localhost:8080/users/me ^
   -H "Authorization: Bearer TU_TOKEN"
 ```
 
+## Base de datos PostgreSQL
+
+Se agregaron scripts en la carpeta `database/`:
+
+- `database/schema.sql`: crea las tablas `users`, `books`, `downloads`, `loans` y `reservations`.
+- `database/seed.sql`: agrega usuarios y libros de prueba.
+- `database/README.md`: explica como crear la base `digital_library`.
+
+El proyecto tambien mantiene `AutoMigrate` en `internal/database/connection.go`, por lo que puede crear las tablas automaticamente al iniciar la aplicacion.
+
 ## Contenidos de Go evidenciados
 
 - Structs: `Book`, `Download`, inputs y filtros.
