@@ -1,15 +1,16 @@
 package main
 
 import (
-	"log"
 	"github.com/gin-gonic/gin"
+	"log"
 
 	"sistema-libros-electronicos/internal/config"
-	"sistema-libros-electronicos/internal/routes"
 	"sistema-libros-electronicos/internal/database"
+	"sistema-libros-electronicos/internal/routes"
 )
 
 func main() {
+	config.LoadEnv()
 
 	err := database.Connect()
 	if err != nil {
