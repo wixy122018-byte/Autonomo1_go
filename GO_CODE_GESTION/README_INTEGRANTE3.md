@@ -6,6 +6,7 @@ Esta parte implementa el catalogo de libros, filtros y descargas dentro del proy
 
 | Metodo | Ruta | Descripcion |
 |---|---|---|
+| GET | `/api/v1/services` | Lista los servicios web REST del modulo |
 | POST | `/books` | Registra un libro |
 | GET | `/books` | Lista libros activos |
 | GET | `/books/:id` | Consulta libro por ID |
@@ -14,6 +15,15 @@ Esta parte implementa el catalogo de libros, filtros y descargas dentro del proy
 | GET | `/books/search` | Busca por titulo, autor, categoria o disponibilidad |
 | POST | `/downloads` | Registra descarga |
 | GET | `/downloads/history` | Consulta historial de descargas |
+
+Tambien se agregaron rutas versionadas con el prefijo `/api/v1`, por ejemplo:
+
+```text
+GET /api/v1/books
+GET /api/v1/books/search?category=Informatica
+POST /api/v1/downloads
+POST /api/v1/login
+```
 
 ## Ejemplos
 
@@ -84,6 +94,10 @@ Se agregaron scripts en la carpeta `database/`:
 - `database/README.md`: explica como crear la base `digital_library`.
 
 El proyecto tambien mantiene `AutoMigrate` en `internal/database/connection.go`, por lo que puede crear las tablas automaticamente al iniciar la aplicacion.
+
+## Servicios web
+
+Se agrego documentacion en `docs/SERVICIOS_WEB_INTEGRANTE3.md` y un archivo de pruebas `docs/servicios_web_pruebas.http` para evidenciar consumo de endpoints REST desde un IDE como VS Code.
 
 ## Contenidos de Go evidenciados
 

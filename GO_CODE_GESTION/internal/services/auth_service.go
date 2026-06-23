@@ -138,6 +138,7 @@ func CheckPassword(password, hash string) bool {
 	return bcrypt.CompareHashAndPassword([]byte(hash), []byte(password)) == nil
 }
 
+// GenerateJWT crea un token firmado para identificar al usuario autenticado.
 func GenerateJWT(user models.User) (string, error) {
 	header := map[string]string{
 		"alg": "HS256",
@@ -163,6 +164,7 @@ func GenerateJWT(user models.User) (string, error) {
 	return unsigned + "." + signJWT(unsigned), nil
 }
 
+// VerifyJWT valida firma y expiracion antes de aceptar un token recibido.
 func VerifyJWT(token string) (TokenClaims, error) {
 	parts := strings.Split(token, ".")
 	if len(parts) != 3 {

@@ -1,0 +1,56 @@
+### Health
+GET http://localhost:8081/health
+
+### Catalogo de servicios web del modulo
+GET http://localhost:8081/api/v1/services
+
+### Listar libros
+GET http://localhost:8081/api/v1/books
+
+### Buscar por categoria
+GET http://localhost:8081/api/v1/books/search?category=Informatica
+
+### Buscar por titulo
+GET http://localhost:8081/api/v1/books/search?title=go
+
+### Login
+POST http://localhost:8081/api/v1/login
+Content-Type: application/json
+
+{
+  "email": "estudiante@example.com",
+  "password": "secreto123"
+}
+
+### Usuario autenticado
+GET http://localhost:8081/api/v1/users/me
+Authorization: Bearer PEGAR_TOKEN_AQUI
+
+### Registrar libro
+POST http://localhost:8081/api/v1/books
+Content-Type: application/json
+
+{
+  "title": "Servicios Web con Go",
+  "author": "Leonardo Sanchez",
+  "category": "Informatica",
+  "editorial": "UTM",
+  "year": 2026,
+  "description": "Libro de prueba para evidenciar servicios web REST.",
+  "format": "PDF",
+  "isbn": "978-9-998",
+  "available": true,
+  "file_path": "/books/servicios-web-go.pdf"
+}
+
+### Registrar descarga
+POST http://localhost:8081/api/v1/downloads
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "book_id": 1
+}
+
+### Historial de descargas
+GET http://localhost:8081/api/v1/downloads/history

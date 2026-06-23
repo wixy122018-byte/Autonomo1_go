@@ -36,6 +36,8 @@ func RegisterRoutes(router *gin.Engine) {
 	downloadHandler := handlers.NewDownloadHandler(downloadService)
 	authHandler := handlers.NewAuthHandler(authService)
 
+	router.GET("/api/v1/services", handlers.WebServicesCatalog)
+
 	router.POST("/users/register", authHandler.Register)
 	router.POST("/login", authHandler.Login)
 	router.GET("/users/me", authHandler.Me)
@@ -49,4 +51,17 @@ func RegisterRoutes(router *gin.Engine) {
 
 	router.POST("/downloads", downloadHandler.Register)
 	router.GET("/downloads/history", downloadHandler.History)
+
+	api := router.Group("/api/v1")
+	api.POST("/users/register", authHandler.Register)
+	api.POST("/login", authHandler.Login)
+	api.GET("/users/me", authHandler.Me)
+	api.POST("/books", bookHandler.Create)
+	api.GET("/books", bookHandler.List)
+	api.GET("/books/search", bookHandler.Search)
+	api.GET("/books/:id", bookHandler.FindByID)
+	api.PUT("/books/:id", bookHandler.Update)
+	api.DELETE("/books/:id", bookHandler.Deactivate)
+	api.POST("/downloads", downloadHandler.Register)
+	api.GET("/downloads/history", downloadHandler.History)
 }

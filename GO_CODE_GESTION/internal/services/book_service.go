@@ -93,6 +93,7 @@ func (s *BookService) Deactivate(id uint) error {
 	return s.repo.Deactivate(id)
 }
 
+// FilterBooks aplica filtros de busqueda sin modificar la lista original.
 func FilterBooks(books []models.Book, filters BookFilters) []models.Book {
 	filterMap := map[string]string{
 		"title":        strings.TrimSpace(filters.Title),
@@ -128,6 +129,7 @@ func FilterBooks(books []models.Book, filters BookFilters) []models.Book {
 	return filtered
 }
 
+// CountBooksByCategory resume el catalogo usando un mapa categoria -> cantidad.
 func CountBooksByCategory(books []models.Book) map[string]int {
 	counts := map[string]int{}
 	for _, book := range books {

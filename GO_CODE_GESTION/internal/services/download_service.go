@@ -23,6 +23,7 @@ type DownloadInput struct {
 	BookID uint `json:"book_id"`
 }
 
+// Register valida disponibilidad antes de guardar una descarga en el historial.
 func (s *DownloadService) Register(input DownloadInput) (models.Download, error) {
 	book, err := s.bookRepo.FindByID(input.BookID)
 	if err != nil {
