@@ -9,3 +9,9 @@ type Reservation struct {
 	ReservationDate time.Time `json:"reservation_date"`
 	Status          string    `json:"status"`
 }
+
+// ConfirmReservation cambia el estado
+// de una reserva a confirmada.
+func (r *Reservation) ConfirmReservation() {
+	r.Status = "confirmed"
+}
