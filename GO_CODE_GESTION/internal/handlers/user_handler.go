@@ -114,3 +114,36 @@ func (h *UserHandler) Profile(c *gin.Context) {
 		"user":    user,
 	})
 }
+
+// DeleteUser elimina un usuario mediante su identificador.
+func (h *UserHandler) DeleteUser(c *gin.Context) {
+	idParam := c.Param("id")
+
+	id, err := strconv.ParseUint(idParam, 10, 64)
+	if err != nil || id == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "el identificador del usuario no es válido",
+		})
+		return
+	}
+
+	err = h.userService.DeleteUser(uint(id))
+
+	if err != nil {
+		if errors.Is(err, repositories.ErrUserNotFound) {
+			c.JSON(http.StatusNotFound, gin.H{
+				"error": err.Error(),
+			})
+			return
+		}
+
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "no se pudo eliminar el usuario",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "usuario eliminado correctamente",
+	})
+}
