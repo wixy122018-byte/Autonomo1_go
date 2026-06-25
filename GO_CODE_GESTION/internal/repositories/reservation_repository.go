@@ -1,6 +1,6 @@
 package repositories
 
-import "GO_CODE_GESTION/internal/models"
+import "sistema-libros-electronicos/internal/models"
 
 // ReservationRepository define las operaciones
 // para gestionar reservas.
