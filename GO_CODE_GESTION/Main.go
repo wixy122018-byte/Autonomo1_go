@@ -10,6 +10,7 @@ import (
 )
 
 func main() {
+	config.LoadEnv()
 
 	err := database.Connect()
 	if err != nil {

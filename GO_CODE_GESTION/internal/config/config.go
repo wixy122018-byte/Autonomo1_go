@@ -28,6 +28,10 @@ func GetServerPort() string {
 	return GetEnv("PORT", "8080")
 }
 
+func GetJWTSecret() string {
+	return GetEnv("JWT_SECRET", "clave_secreta_proyecto_go")
+}
+
 func GetDatabaseDSN() string {
 	databaseURL := os.Getenv("DATABASE_URL")
 	if databaseURL != "" {

@@ -2,10 +2,10 @@ package routes
 
 import (
 	"net/http"
-	"os"
 
 	"github.com/gin-gonic/gin"
 
+	"sistema-libros-electronicos/internal/config"
 	"sistema-libros-electronicos/internal/database"
 	"sistema-libros-electronicos/internal/handlers"
 	authmiddleware "sistema-libros-electronicos/internal/middleware"
@@ -35,7 +35,7 @@ func RegisterRoutes(router *gin.Engine) {
 
 	userService := services.NewUserService(userRepository)
 
-	jwtSecret := os.Getenv("JWT_SECRET")
+	jwtSecret := config.GetJWTSecret()
 
 	authService := services.NewAuthService(
 		userRepository,
@@ -45,17 +45,56 @@ func RegisterRoutes(router *gin.Engine) {
 	authHandler := handlers.NewAuthHandler(authService)
 	userHandler := handlers.NewUserHandler(userService)
 
+	// Inicialización de las capas de libros y descargas (integración Leonardo).
+	bookRepository := repositories.NewGormBookRepository(database.DB)
+	downloadRepository := repositories.NewGormDownloadRepository(database.DB)
+
+	bookService := services.NewBookService(bookRepository)
+	downloadService := services.NewDownloadService(downloadRepository, bookRepository)
+
+	bookHandler := handlers.NewBookHandler(bookService)
+	downloadHandler := handlers.NewDownloadHandler(downloadService)
+
 	authMiddleware := authmiddleware.NewAuthMiddleware(authService)
 
 	// Rutas públicas: no necesitan token.
 	router.POST("/register", authHandler.Register)
 	router.POST("/login", authHandler.Login)
 
+	// Catálogo de servicios web (público).
+	router.GET("/api/v1/services", handlers.WebServicesCatalog)
+
 	// Rutas protegidas: necesitan un token JWT válido.
 	protected := router.Group("/")
 	protected.Use(authMiddleware.RequireAuth())
 	{
 		protected.GET("/profile", userHandler.Profile)
+
+		// Libros: lectura para cualquier usuario autenticado.
+		protected.GET("/books", bookHandler.List)
+		protected.GET("/books/search", bookHandler.Search)
+		protected.GET("/books/:id", bookHandler.FindByID)
+
+		// Descargas: cualquier usuario autenticado.
+		protected.POST("/downloads", downloadHandler.Register)
+		protected.GET("/downloads/history", downloadHandler.History)
+
+		// Solo admin o bibliotecario puede gestionar libros (crear, editar, desactivar).
+		protected.POST(
+			"/books",
+			authmiddleware.RequireRoles(models.RoleAdministrador, models.RoleBibliotecario),
+			bookHandler.Create,
+		)
+		protected.PUT(
+			"/books/:id",
+			authmiddleware.RequireRoles(models.RoleAdministrador, models.RoleBibliotecario),
+			bookHandler.Update,
+		)
+		protected.DELETE(
+			"/books/:id",
+			authmiddleware.RequireRoles(models.RoleAdministrador, models.RoleBibliotecario),
+			bookHandler.Deactivate,
+		)
 
 		// Solo el administrador puede consultar todos los usuarios.
 		protected.GET(
