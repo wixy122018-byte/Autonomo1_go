@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Playground de APIs | Gestión de Libros</title>
+	<meta name="description" content="Catálogo interactivo y banco de pruebas (Playground) para el Sistema de Gestión de Libros Electrónicos.">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--bg-primary: #090d16;
+			--bg-secondary: #111827;
+			--bg-card: #1f2937;
+			--bg-input: #1f2937;
+			--border-color: #374151;
+			--text-primary: #f9fafb;
+			--text-secondary: #9ca3af;
+			--primary-color: #6366f1;
+			--primary-hover: #4f46e5;
+			--success: #10b981;
+			--info: #3b82f6;
+			--warning: #f59e0b;
+			--danger: #ef4444;
+			--shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+		}
+
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: 'Plus Jakarta Sans', sans-serif;
+			background-color: var(--bg-primary);
+			color: var(--text-primary);
+			line-height: 1.5;
+			padding: 2rem 1.5rem;
+		}
+
+		.container {
+			max-width: 1100px;
+			margin: 0 auto;
+		}
+
+		header {
+			margin-bottom: 2rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 1rem;
+			border-bottom: 1px solid var(--border-color);
+			padding-bottom: 1.5rem;
+		}
+
+		h1 {
+			font-size: 2.25rem;
+			font-weight: 700;
+			background: linear-gradient(to right, #818cf8, #c084fc);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+
+		.subtitle {
+			color: var(--text-secondary);
+			font-size: 0.95rem;
+			margin-top: 0.25rem;
+		}
+
+		.status-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			background: rgba(16, 185, 129, 0.1);
+			color: var(--success);
+			padding: 0.4rem 0.8rem;
+			border-radius: 9999px;
+			font-size: 0.85rem;
+			font-weight: 600;
+			border: 1px solid rgba(16, 185, 129, 0.2);
+		}
+
+		.status-dot {
+			width: 8px;
+			height: 8px;
+			background-color: var(--success);
+			border-radius: 50%;
+			box-shadow: 0 0 8px var(--success);
+			animation: pulse 1.5s infinite alternate;
+		}
+
+		@keyframes pulse {
+			from { opacity: 0.4; }
+			to { opacity: 1; }
+		}
+
+		/* Global Auth Bar */
+		.global-auth-bar {
+			background-color: var(--bg-secondary);
+			border: 1px solid var(--border-color);
+			border-radius: 12px;
+			padding: 1rem 1.25rem;
+			margin-bottom: 1.5rem;
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			flex-wrap: wrap;
+		}
+
+		.auth-title {
+			font-size: 0.9rem;
+			font-weight: 600;
+			color: var(--text-secondary);
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+
+		.token-input-wrapper {
+			flex: 1;
+			min-width: 280px;
+			display: flex;
+			gap: 0.5rem;
+		}
+
+		.token-input {
+			flex: 1;
+			background-color: var(--bg-input);
+			border: 1px solid var(--border-color);
+			border-radius: 8px;
+			padding: 0.5rem 0.75rem;
+			color: var(--text-primary);
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.85rem;
+			outline: none;
+			transition: border-color 0.2s;
+		}
+
+		.token-input:focus {
+			border-color: var(--primary-color);
+		}
+
+		.btn {
+			background-color: var(--primary-color);
+			color: #fff;
+			border: none;
+			border-radius: 8px;
+			padding: 0.5rem 1rem;
+			font-family: inherit;
+			font-size: 0.85rem;
+			font-weight: 600;
+			cursor: pointer;
+			transition: background-color 0.2s;
+		}
+
+		.btn:hover {
+			background-color: var(--primary-hover);
+		}
+
+		.btn-secondary {
+			background-color: transparent;
+			border: 1px solid var(--border-color);
+			color: var(--text-primary);
+		}
+
+		.btn-secondary:hover {
+			background-color: rgba(255, 255, 255, 0.05);
+		}
+
+		/* Search and filter tools */
+		.search-container {
+			position: relative;
+			margin-bottom: 2rem;
+		}
+
+		.search-input {
+			width: 100%;
+			padding: 0.9rem 1.2rem;
+			background-color: var(--bg-secondary);
+			border: 1px solid var(--border-color);
+			border-radius: 12px;
+			color: var(--text-primary);
+			font-family: inherit;
+			font-size: 1rem;
+			transition: all 0.2s ease;
+			outline: none;
+		}
+
+		.search-input:focus {
+			border-color: var(--primary-color);
+			box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+		}
+
+		/* Endpoint Grid/List */
+		.grid {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		.card {
+			background-color: var(--bg-secondary);
+			border: 1px solid var(--border-color);
+			border-radius: 12px;
+			padding: 1.25rem;
+			transition: transform 0.2s ease, border-color 0.2s ease;
+		}
+
+		.card:hover {
+			transform: translateY(-2px);
+			border-color: var(--primary-color);
+		}
+
+		.card-top {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 0.75rem;
+			margin-bottom: 0.75rem;
+		}
+
+		.endpoint-ident {
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+		}
+
+		.method {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.75rem;
+			font-weight: 700;
+			padding: 0.25rem 0.6rem;
+			border-radius: 6px;
+			color: #fff;
+			min-width: 65px;
+			text-align: center;
+		}
+
+		.method-get { background-color: var(--info); }
+		.method-post { background-color: var(--success); }
+		.method-put { background-color: var(--warning); }
+		.method-delete { background-color: var(--danger); }
+
+		.path {
+			font-family: 'JetBrains Mono', monospace;
+			font-weight: 600;
+			font-size: 1.05rem;
+			color: var(--text-primary);
+		}
+
+		.badges {
+			display: flex;
+			gap: 0.5rem;
+			align-items: center;
+		}
+
+		.badge {
+			font-size: 0.75rem;
+			font-weight: 600;
+			padding: 0.25rem 0.5rem;
+			border-radius: 6px;
+			border: 1px solid transparent;
+		}
+
+		.badge-jwt {
+			background: rgba(245, 158, 11, 0.1);
+			color: var(--warning);
+			border-color: rgba(245, 158, 11, 0.2);
+		}
+
+		.badge-public {
+			background: rgba(16, 185, 129, 0.1);
+			color: var(--success);
+			border-color: rgba(16, 185, 129, 0.2);
+		}
+
+		.badge-roles {
+			background: rgba(99, 102, 241, 0.1);
+			color: #a5b4fc;
+			border-color: rgba(99, 102, 241, 0.2);
+		}
+
+		.badge-roles-all {
+			background: rgba(156, 163, 175, 0.1);
+			color: var(--text-secondary);
+			border-color: rgba(156, 163, 175, 0.2);
+		}
+
+		.card-mid {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-end;
+			gap: 1.5rem;
+			margin-top: 0.5rem;
+		}
+
+		.desc {
+			color: var(--text-secondary);
+			font-size: 0.95rem;
+			max-width: 80%;
+		}
+
+		.body-info {
+			margin-top: 0.75rem;
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			background-color: rgba(255, 255, 255, 0.03);
+			padding: 0.35rem 0.6rem;
+			border-radius: 6px;
+			font-size: 0.8rem;
+			border: 1px solid var(--border-color);
+		}
+
+		.body-label {
+			color: var(--text-secondary);
+		}
+
+		.code-body {
+			font-family: 'JetBrains Mono', monospace;
+			color: #c084fc;
+			font-weight: 500;
+		}
+
+		.btn-test {
+			background: linear-gradient(135deg, var(--primary-color), #818cf8);
+			border: none;
+			color: white;
+			border-radius: 8px;
+			padding: 0.55rem 1.1rem;
+			font-size: 0.85rem;
+			font-weight: 600;
+			cursor: pointer;
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			transition: opacity 0.2s, transform 0.1s;
+		}
+
+		.btn-test:hover {
+			opacity: 0.95;
+		}
+
+		.btn-test:active {
+			transform: scale(0.98);
+		}
+
+		/* Slide-over Drawer for Playground */
+		.drawer-backdrop {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: rgba(0, 0, 0, 0.6);
+			backdrop-filter: blur(4px);
+			z-index: 100;
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 0.3s ease;
+		}
+
+		.drawer-backdrop.active {
+			opacity: 1;
+			pointer-events: auto;
+		}
+
+		.drawer {
+			position: fixed;
+			top: 0;
+			right: -550px;
+			width: 100%;
+			max-width: 550px;
+			height: 100%;
+			background-color: #111827;
+			border-left: 1px solid var(--border-color);
+			box-shadow: -10px 0 25px rgba(0,0,0,0.5);
+			z-index: 101;
+			transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+			display: flex;
+			flex-direction: column;
+		}
+
+		.drawer.active {
+			right: 0;
+		}
+
+		.drawer-header {
+			padding: 1.5rem;
+			border-bottom: 1px solid var(--border-color);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.drawer-title {
+			font-size: 1.2rem;
+			font-weight: 700;
+		}
+
+		.close-btn {
+			background: none;
+			border: none;
+			color: var(--text-secondary);
+			font-size: 1.5rem;
+			cursor: pointer;
+			padding: 0.25rem 0.5rem;
+			border-radius: 6px;
+		}
+
+		.close-btn:hover {
+			background-color: rgba(255, 255, 255, 0.05);
+			color: var(--text-primary);
+		}
+
+		.drawer-body {
+			flex: 1;
+			overflow-y: auto;
+			padding: 1.5rem;
+			display: flex;
+			flex-direction: column;
+			gap: 1.5rem;
+		}
+
+		.drawer-field {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+
+		.field-label {
+			font-size: 0.85rem;
+			font-weight: 600;
+			color: var(--text-secondary);
+		}
+
+		.input-text {
+			background-color: var(--bg-input);
+			border: 1px solid var(--border-color);
+			border-radius: 8px;
+			padding: 0.65rem 0.9rem;
+			color: var(--text-primary);
+			font-family: inherit;
+			font-size: 0.95rem;
+			outline: none;
+		}
+
+		.input-text:focus {
+			border-color: var(--primary-color);
+		}
+
+		.textarea-body {
+			background-color: #0b0f19;
+			border: 1px solid var(--border-color);
+			border-radius: 8px;
+			padding: 0.75rem;
+			color: #34d399;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.85rem;
+			height: 150px;
+			resize: vertical;
+			outline: none;
+		}
+
+		.textarea-body:focus {
+			border-color: var(--primary-color);
+		}
+
+		.drawer-actions {
+			padding: 1.5rem;
+			border-top: 1px solid var(--border-color);
+			display: flex;
+			gap: 1rem;
+		}
+
+		.btn-send {
+			flex: 1;
+			padding: 0.8rem;
+			font-size: 1rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 0.5rem;
+		}
+
+		/* Response viewer */
+		.response-section {
+			background-color: #0b0f19;
+			border: 1px solid var(--border-color);
+			border-radius: 8px;
+			overflow: hidden;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.response-header {
+			background-color: rgba(255,255,255,0.02);
+			border-bottom: 1px solid var(--border-color);
+			padding: 0.5rem 0.75rem;
+			display: flex;
+			justify-content: space-between;
+			font-size: 0.75rem;
+			color: var(--text-secondary);
+		}
+
+		.status-indicator {
+			font-weight: 700;
+		}
+
+		.status-2xx { color: var(--success); }
+		.status-4xx, .status-5xx { color: var(--danger); }
+
+		.response-pre {
+			padding: 1rem;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.85rem;
+			overflow-x: auto;
+			max-height: 250px;
+			white-space: pre-wrap;
+			color: #e5e7eb;
+		}
+
+		footer.page-footer {
+			margin-top: 3rem;
+			text-align: center;
+			font-size: 0.8rem;
+			color: var(--text-secondary);
+			border-top: 1px solid var(--border-color);
+			padding-top: 1.5rem;
+		}
+
+		footer a {
+			color: var(--primary-color);
+			text-decoration: none;
+		}
+
+		footer a:hover {
+			text-decoration: underline;
+		}
+
+		/* Utility classes */
+		.spinner {
+			width: 18px;
+			height: 18px;
+			border: 2px solid rgba(255,255,255,0.3);
+			border-top-color: white;
+			border-radius: 50%;
+			animation: spin 0.8s linear infinite;
+			display: none;
+		}
+
+		@keyframes spin {
+			to { transform: rotate(360deg); }
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<div>
+				<h1>Playground de APIs</h1>
+				<p class="subtitle">Catálogo interactivo y pruebas en vivo para la Biblioteca Virtual</p>
+			</div>
+			<div class="status-badge">
+				<span class="status-dot"></span>
+				Servidor en línea
+			</div>
+		</header>
+
+		<!-- Global Authentication Bar -->
+		<div class="global-auth-bar">
+			<div class="auth-title">
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+				<span>Token de Autenticación (JWT):</span>
+			</div>
+			<div class="token-input-wrapper">
+				<input type="text" id="globalTokenInput" class="token-input" placeholder="Pega tu token JWT aquí..." autocomplete="off">
+				<button class="btn btn-secondary" onclick="saveGlobalToken()">Guardar</button>
+				<button class="btn btn-secondary" onclick="clearGlobalToken()" style="border-color: rgba(239, 68, 68, 0.4); color: var(--danger);">Limpiar</button>
+			</div>
+		</div>
+
+		<div class="search-container">
+			<input type="text" id="searchInput" class="search-input" placeholder="Filtrar servicios por método, ruta o descripción..." autocomplete="off">
+		</div>
+
+		<div class="grid" id="endpointsGrid">
+			<!-- {{ENDPOINTS_GRID}} -->
+		</div>
+
+		<footer class="page-footer">
+			<p>Para obtener el catálogo crudo en JSON, solicita con la cabecera <code>Accept: application/json</code> o agrega <a href="?format=json">?format=json</a>.</p>
+		</footer>
+	</div>
+
+	<!-- Slide-over Drawer for Playground -->
+	<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer()"></div>
+	<div class="drawer" id="playgroundDrawer">
+		<div class="drawer-header">
+			<div class="drawer-title" id="drawerTitle">Probar Endpoint</div>
+			<button class="close-btn" onclick="closeDrawer()">&times;</button>
+		</div>
+		<div class="drawer-body">
+			<!-- Path variables -->
+			<div class="drawer-field" id="pathParamsField" style="display: none;">
+				<label class="field-label" id="pathParamLabel">Parámetros de Ruta (:id)</label>
+				<input type="text" id="pathParamInput" class="input-text" placeholder="Ej: 1">
+			</div>
+
+			<!-- Query variables -->
+			<div class="drawer-field" id="queryParamsField" style="display: none;">
+				<label class="field-label">Parámetros de Búsqueda (Query Params)</label>
+				<input type="text" id="queryParamInput" class="input-text" placeholder="Ej: title=El&author=Antoine">
+			</div>
+
+			<!-- Body Payload -->
+			<div class="drawer-field" id="requestBodyField" style="display: none;">
+				<div style="display: flex; justify-content: space-between; align-items: center;">
+					<label class="field-label">Cuerpo de la Petición (JSON)</label>
+					<button class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.15rem 0.4rem;" onclick="resetBodyTemplate()">Restablecer</button>
+				</div>
+				<textarea id="requestBodyInput" class="textarea-body"></textarea>
+			</div>
+
+			<!-- Request Preview -->
+			<div class="drawer-field">
+				<label class="field-label">URL de la Petición</label>
+				<code id="requestUrlPreview" style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; word-break: break-all; color: var(--info); background: rgba(59,130,246,0.1); padding: 0.5rem; border-radius: 6px; border: 1px solid rgba(59,130,246,0.2);"></code>
+			</div>
+
+			<!-- Response -->
+			<div class="drawer-field">
+				<label class="field-label">Respuesta del Servidor</label>
+				<div class="response-section">
+					<div class="response-header">
+						<span>Status: <span id="resStatus" class="status-indicator">-</span></span>
+						<span id="resTime">-</span>
+					</div>
+					<pre id="resBody" class="response-pre">Haz clic en "Enviar" para realizar la petición...</pre>
+				</div>
+			</div>
+		</div>
+		<div class="drawer-actions">
+			<button class="btn btn-secondary" onclick="closeDrawer()">Cancelar</button>
+			<button class="btn btn-send" id="btnSendRequest" onclick="executeRequest()">
+				<span class="spinner" id="requestSpinner"></span>
+				<span id="btnSendText">Enviar Petición</span>
+			</button>
+		</div>
+	</div>
+
+	<script>
+		// Body Templates
+		const bodyTemplates = {
+			"RegisterRequest": {
+				"email": "lector_prueba@example.com",
+				"password": "PasswordSegura123!",
+				"name": "Lector Test",
+				"role": "LECTOR"
+			},
+			"LoginRequest": {
+				"email": "lector_prueba@example.com",
+				"password": "PasswordSegura123!"
+			},
+			"BookInput": {
+				"title": "Cien Años de Soledad",
+				"author": "Gabriel García Márquez",
+				"category": "Novela",
+				"isbn": "978-0307474728",
+				"description": "Una obra clásica de la literatura hispanoamericana.",
+				"is_available": true
+			},
+			"DownloadInput": {
+				"book_id": 1,
+				"ip_address": "127.0.0.1"
+			}
+		};
+
+		// Active Endpoint state
+		let activeEndpoint = null;
+
+		// Load JWT on Init
+		document.addEventListener("DOMContentLoaded", () => {
+			const savedToken = localStorage.getItem("jwt_token");
+			if (savedToken) {
+				document.getElementById("globalTokenInput").value = savedToken;
+			}
+		});
+
+		function saveGlobalToken() {
+			const token = document.getElementById("globalTokenInput").value.trim();
+			if (token) {
+				localStorage.setItem("jwt_token", token);
+				alert("Token JWT guardado localmente para tus peticiones.");
+			} else {
+				clearGlobalToken();
+			}
+		}
+
+		function clearGlobalToken() {
+			localStorage.removeItem("jwt_token");
+			document.getElementById("globalTokenInput").value = "";
+			alert("Token JWT removido.");
+		}
+
+		// Filter grid
+		const searchInput = document.getElementById('searchInput');
+		const cards = document.querySelectorAll('.card');
+
+		searchInput.addEventListener('input', function() {
+			const query = searchInput.value.toLowerCase().trim();
+
+			cards.forEach(card => {
+				const method = card.getAttribute('data-method').toLowerCase();
+				const path = card.getAttribute('data-path').toLowerCase();
+				const desc = card.getAttribute('data-desc').toLowerCase();
+
+				if (method.includes(query) || path.includes(query) || desc.includes(query)) {
+					card.style.display = 'block';
+				} else {
+					card.style.display = 'none';
+				}
+			});
+		});
+
+		// Playground logic
+		function openPlayground(method, path, bodyType) {
+			activeEndpoint = { method, path, bodyType };
+			
+			// Setup title
+			document.getElementById("drawerTitle").innerHTML = `<span class="method method-${method.toLowerCase()}">${method}</span> <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.95rem;">${path}</span>`;
+			
+			// Path params toggle
+			const hasPathParams = path.includes("/:") || path.includes(":");
+			const pathParamsField = document.getElementById("pathParamsField");
+			if (hasPathParams) {
+				pathParamsField.style.display = "flex";
+				// Extract param name
+				const paramName = path.substring(path.indexOf(":") + 1);
+				document.getElementById("pathParamLabel").innerText = `Parámetro de ruta (:${paramName})`;
+				document.getElementById("pathParamInput").value = "";
+			} else {
+				pathParamsField.style.display = "none";
+			}
+
+			// Query params toggle
+			const queryParamsField = document.getElementById("queryParamsField");
+			const isSearch = path.includes("search") || path === "/books";
+			if (isSearch && method === "GET") {
+				queryParamsField.style.display = "flex";
+				document.getElementById("queryParamInput").value = path === "/books" ? "title=&author=&category=&is_available=" : "q=";
+			} else {
+				queryParamsField.style.display = "none";
+			}
+
+			// Body field toggle
+			const requestBodyField = document.getElementById("requestBodyField");
+			if (bodyType && bodyType !== "") {
+				requestBodyField.style.display = "flex";
+				resetBodyTemplate();
+			} else {
+				requestBodyField.style.display = "none";
+			}
+
+			// Reset response area
+			document.getElementById("resStatus").className = "status-indicator";
+			document.getElementById("resStatus").innerText = "-";
+			document.getElementById("resTime").innerText = "-";
+			document.getElementById("resBody").innerText = "Haz clic en 'Enviar' para realizar la petición...";
+
+			// Preview URL
+			updateUrlPreview();
+
+			// Open drawer
+			document.getElementById("drawerBackdrop").classList.add("active");
+			document.getElementById("playgroundDrawer").classList.add("active");
+
+			// Bind input change listeners for dynamic URL preview
+			if (hasPathParams) {
+				document.getElementById("pathParamInput").addEventListener("input", updateUrlPreview);
+			}
+			if (isSearch && method === "GET") {
+				document.getElementById("queryParamInput").addEventListener("input", updateUrlPreview);
+			}
+		}
+
+		function resetBodyTemplate() {
+			if (activeEndpoint && activeEndpoint.bodyType) {
+				const template = bodyTemplates[activeEndpoint.bodyType];
+				document.getElementById("requestBodyInput").value = JSON.stringify(template, null, 2);
+			}
+		}
+
+		function updateUrlPreview() {
+			if (!activeEndpoint) return;
+			let previewUrl = window.location.origin + activeEndpoint.path;
+
+			// Replace path variable
+			if (activeEndpoint.path.includes(":") || activeEndpoint.path.includes("/:")) {
+				const inputVal = document.getElementById("pathParamInput").value.trim() || "{id}";
+				const match = activeEndpoint.path.match(/:[a-zA-Z]+/);
+				if (match) {
+					previewUrl = previewUrl.replace(match[0], inputVal);
+				}
+			}
+
+			// Append query param
+			const isSearch = activeEndpoint.path.includes("search") || activeEndpoint.path === "/books";
+			if (isSearch && activeEndpoint.method === "GET") {
+				const qVal = document.getElementById("queryParamInput").value.trim();
+				if (qVal) {
+					previewUrl += "?" + qVal;
+				}
+			}
+
+			document.getElementById("requestUrlPreview").innerText = previewUrl;
+		}
+
+		function closeDrawer() {
+			document.getElementById("drawerBackdrop").classList.remove("active");
+			document.getElementById("playgroundDrawer").classList.remove("active");
+			activeEndpoint = null;
+		}
+
+		async function executeRequest() {
+			if (!activeEndpoint) return;
+
+			// UI state: loading
+			const btnText = document.getElementById("btnSendText");
+			const spinner = document.getElementById("requestSpinner");
+			const btnSend = document.getElementById("btnSendRequest");
+
+			btnText.innerText = "Enviando...";
+			spinner.style.display = "inline-block";
+			btnSend.disabled = true;
+
+			let url = window.location.origin + activeEndpoint.path;
+
+			// Path replacement
+			if (activeEndpoint.path.includes(":")) {
+				const inputVal = document.getElementById("pathParamInput").value.trim();
+				if (!inputVal) {
+					alert("Por favor, introduce el parámetro de ruta.");
+					resetSendBtn();
+					return;
+				}
+				const match = activeEndpoint.path.match(/:[a-zA-Z]+/);
+				if (match) {
+					url = url.replace(match[0], inputVal);
+				}
+			}
+
+			// Query replacement
+			const isSearch = activeEndpoint.path.includes("search") || activeEndpoint.path === "/books";
+			if (isSearch && activeEndpoint.method === "GET") {
+				const qVal = document.getElementById("queryParamInput").value.trim();
+				if (qVal) {
+					url += "?" + qVal;
+				}
+			}
+
+			const options = {
+				method: activeEndpoint.method,
+				headers: {
+					"Accept": "application/json"
+				}
+			};
+
+			// JWT Token
+			const token = document.getElementById("globalTokenInput").value.trim();
+			if (token) {
+				options.headers["Authorization"] = `Bearer ${token}`;
+			}
+
+			// Request Body
+			if (activeEndpoint.bodyType && activeEndpoint.bodyType !== "") {
+				const bodyContent = document.getElementById("requestBodyInput").value.trim();
+				try {
+					JSON.parse(bodyContent); // Validate JSON format
+					options.body = bodyContent;
+					options.headers["Content-Type"] = "application/json";
+				} catch (e) {
+					alert("El cuerpo de la petición no contiene un formato JSON válido.");
+					resetSendBtn();
+					return;
+				}
+			}
+
+			const startTime = performance.now();
+
+			try {
+				const response = await fetch(url, options);
+				const duration = (performance.now() - startTime).toFixed(0);
+				const data = await response.text();
+
+				// Status UI
+				const statusEl = document.getElementById("resStatus");
+				statusEl.innerText = `${response.status} ${response.statusText}`;
+				statusEl.className = "status-indicator";
+
+				if (response.status >= 200 && response.status < 300) {
+					statusEl.classList.add("status-2xx");
+				} else {
+					statusEl.classList.add("status-4xx");
+				}
+
+				// Response Time
+				document.getElementById("resTime").innerText = `${duration} ms`;
+
+				// Response Body Formatter
+				const resBodyEl = document.getElementById("resBody");
+				try {
+					const json = JSON.parse(data);
+					resBodyEl.innerText = JSON.stringify(json, null, 2);
+				} catch (e) {
+					resBodyEl.innerText = data || "(Respuesta vacía)";
+				}
+
+			} catch (err) {
+				document.getElementById("resStatus").innerText = "Error de red";
+				document.getElementById("resStatus").className = "status-indicator status-5xx";
+				document.getElementById("resTime").innerText = "-";
+				document.getElementById("resBody").innerText = err.message || err;
+			} finally {
+				resetSendBtn();
+			}
+
+			function resetSendBtn() {
+				btnText.innerText = "Enviar Petición";
+				spinner.style.display = "none";
+				btnSend.disabled = false;
+			}
+		}
+	</script>
+</body>
+</html>
