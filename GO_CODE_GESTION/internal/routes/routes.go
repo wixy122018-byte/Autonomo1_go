@@ -109,5 +109,12 @@ func RegisterRoutes(router *gin.Engine) {
 			authmiddleware.RequireRoles(models.RoleAdministrador),
 			userHandler.GetUserByID,
 		)
+
+		// Solo el administrador puede eliminar usuarios por ID.
+		protected.DELETE(
+			"/users/:id",
+			authmiddleware.RequireRoles(models.RoleAdministrador),
+			userHandler.DeleteUser,
+		)
 	}
 }

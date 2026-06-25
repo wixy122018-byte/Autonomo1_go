@@ -70,3 +70,12 @@ func (s *UserService) GetAllUsers() ([]models.User, error) {
 
 	return users, nil
 }
+
+// DeleteUser elimina un usuario mediante su identificador.
+func (s *UserService) DeleteUser(id uint) error {
+	if id == 0 {
+		return errors.New("el identificador del usuario no es válido")
+	}
+
+	return s.repository.DeleteByID(id)
+}

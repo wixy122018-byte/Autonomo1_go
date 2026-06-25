@@ -22,6 +22,7 @@ type UserRepository interface {
 	FindByID(id uint) (*models.User, error)
 	FindAll() ([]models.User, error)
 	Update(user *models.User) error
+	DeleteByID(id uint) error
 }
 
 // GormUserRepository implementa UserRepository utilizando GORM y PostgreSQL.
@@ -107,4 +108,19 @@ func (r *GormUserRepository) FindAll() ([]models.User, error) {
 // Update actualiza la información de un usuario.
 func (r *GormUserRepository) Update(user *models.User) error {
 	return r.db.Save(user).Error
+}
+
+// DeleteByID elimina un usuario mediante su identificador.
+func (r *GormUserRepository) DeleteByID(id uint) error {
+	result := r.db.Delete(&models.User{}, id)
+
+	if result.Error != nil {
+		return result.Error
+	}
+
+	if result.RowsAffected == 0 {
+		return ErrUserNotFound
+	}
+
+	return nil
 }

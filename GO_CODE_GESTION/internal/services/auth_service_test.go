@@ -81,6 +81,18 @@ func (r *FakeUserRepository) Update(user *models.User) error {
 	return repositories.ErrUserNotFound
 }
 
+// DeleteByID elimina un usuario simulado por ID.
+func (r *FakeUserRepository) DeleteByID(id uint) error {
+	for i := range r.users {
+		if r.users[i].ID == id {
+			r.users = append(r.users[:i], r.users[i+1:]...)
+			return nil
+		}
+	}
+
+	return repositories.ErrUserNotFound
+}
+
 // TestRegisterUser verifica que el usuario se registre
 // y que la contraseña quede cifrada con bcrypt.
 func TestRegisterUser(t *testing.T) {
