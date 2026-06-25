@@ -1,6 +1,6 @@
 package services
 
-import "GO_CODE_GESTION/internal/models"
+import "sistema-libros-electronicos/internal/models"
 
 // CountActiveLoans cuenta los préstamos
 // que siguen activos.

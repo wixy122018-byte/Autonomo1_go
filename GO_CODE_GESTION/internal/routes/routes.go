@@ -3,6 +3,8 @@ package routes
 import (
 	"net/http"
 
+	"sistema-libros-electronicos/internal/handlers"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -19,4 +21,15 @@ func RegisterRoutes(router *gin.Engine) {
 			"status": "ok",
 		})
 	})
+
+	// Rutas de usuarios
+	router.GET("/users", handlers.ListUsers)
+	router.GET("/users/:id", handlers.GetUserByID)
+	router.POST("/users", handlers.CreateUser)
+	router.PUT("/users/:id", handlers.UpdateUser)
+	router.DELETE("/users/:id", handlers.DeleteUser)
+
+	// Rutas de seguridad
+	router.POST("/register", handlers.Register)
+	router.POST("/login", handlers.Login)
 }

@@ -1,6 +1,6 @@
 package repositories
 
-import "GO_CODE_GESTION/internal/models"
+import "sistema-libros-electronicos/internal/models"
 
 // LoanRepository define las operaciones básicas
 // para gestionar préstamos.
