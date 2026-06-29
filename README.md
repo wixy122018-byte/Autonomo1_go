@@ -981,7 +981,6 @@ Describe los cambios en el PR y solicita revisión.
 
 Para documentación más detallada, ver:
 
-- **[InformeFinal.md](./InformeFinal.md)** - Informe técnico integral con toda la implementación
 - **[GO_CODE_GESTION/database/README.md](./GO_CODE_GESTION/database/README.md)** - Documentación de base de datos
 - **Código fuente** - Comentarios detallados en cada archivo
 
@@ -1039,33 +1038,6 @@ El proyecto integra conocimientos de todas las unidades:
 - **Ramas**: 9 ramas de desarrollo
 - **Status**: ✅ Production Ready
 
----
-
-## 📄 Licencia
-
-Este proyecto está bajo licencia **MIT**. Ver archivo [LICENSE](LICENSE) para más detalles.
-
-```
-MIT License - Copyright (c) 2026 Autonomo1_go Contributors
-```
-
----
-
-## 📞 Soporte y Contacto
-
-### Reportar Bugs
-
-Crear un [Issue](https://github.com/wixy122018-byte/Autonomo1_go/issues) con:
-- Descripción clara del problema
-- Pasos para reproducir
-- Versión de Go y PostgreSQL
-- Logs de error
-
-### Sugerencias de Mejoras
-
-Crear un [Discussion](https://github.com/wixy122018-byte/Autonomo1_go/discussions) con tus ideas.
-
----
 
 ## ✨ Logros Alcanzados
 
@@ -1080,7 +1052,7 @@ Crear un [Discussion](https://github.com/wixy122018-byte/Autonomo1_go/discussion
 
 ---
 
-## 🎉 Conclusión
+## Conclusión
 
 El **Sistema de Gestión de Libros Electrónicos** demuestra la aplicación práctica de conceptos avanzados de programación backend en Go. El proyecto integra seguridad, modularidad, escalabilidad y mejores prácticas de desarrollo de software.
 
@@ -1089,12 +1061,6 @@ El **Sistema de Gestión de Libros Electrónicos** demuestra la aplicación prá
 ---
 
 <div align="center">
-
-**⭐ Si este proyecto te fue útil, considera darle una estrella en GitHub**
-
-Made with ❤️ by [wixy122018-byte](https://github.com/wixy122018-byte)
-
-[GitHub](https://github.com/wixy122018-byte/Autonomo1_go) • [Railway](https://railway.app) • [Go Lang](https://golang.org)
 
 </div>
 
