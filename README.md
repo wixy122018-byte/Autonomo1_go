@@ -634,8 +634,7 @@ go run Main.go
 2. Conectar repositorio en railway.app
 3. Configurar variables de entorno
 4. Railway se despliega automáticamente
-5. URL de producción: https://autonomo1go-production-eb86.up.railway.app/
-
+5. URL de producción: https://autonomo1go-production-eb86.up.railway.app/api/v1/services
 ---
 
 ## 👥 Equipo de Desarrollo
