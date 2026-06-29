@@ -634,7 +634,7 @@ go run Main.go
 2. Conectar repositorio en railway.app
 3. Configurar variables de entorno
 4. Railway se despliega automáticamente
-5. URL de producción: https://tu-app.railway.app
+5. URL de producción: https://autonomo1go-production-eb86.up.railway.app/
 
 ---
 
@@ -648,17 +648,6 @@ go run Main.go
 | 4 | Yandry Álvarez | Integrante 4 | Usuarios, autenticación, seguridad, documentación |
 
 ---
-
-## 📋 Limitaciones y Mejoras Futuras
-
-### Limitaciones Actuales
-
-1. Sin interfaz gráfica (solo API REST)
-2. Sin autenticación OAuth2/SAML
-3. Sin caché (Redis)
-4. Sin WebSockets (actualizaciones en tiempo real)
-5. Sin pruebas unitarias completas
-6. Sin Swagger/OpenAPI
 
 ### Mejoras Futuras
 
@@ -691,7 +680,6 @@ MIT License - Copyright (c) 2026
 
 <div align="center">
 
-**Desarrollado con ❤️ en Go**
 
 Junio 2026 | Programación en Go
 
