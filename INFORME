@@ -1,0 +1,220 @@
+# INFORME DE APORTES INDIVIDUALES
+
+## Proyecto Integrador – Sistema de Gestión de Biblioteca Digital
+
+### Autónomo 1 y Autónomo 2
+
+**Estudiante:** Michael Lescano
+
+**Asignatura:** Programación Funcional con Go
+
+**Carrera:** Ingeniería en Software
+
+**Universidad:** *(Completar con el nombre de la universidad)*
+
+**Docente:** *(Completar)*
+
+**Fecha:** Junio 2026
+
+---
+
+# Introducción
+
+El presente informe tiene como finalidad describir los aportes realizados durante el desarrollo del Proyecto Integrador correspondiente a la asignatura de Programación Funcional con Go. Mi participación se centró en la planificación de la arquitectura del sistema y en la implementación de los componentes fundamentales que permiten el funcionamiento de la aplicación.
+
+Durante el desarrollo del proyecto se aplicaron los conocimientos adquiridos en las diferentes unidades de la asignatura, implementando una arquitectura modular, separación de responsabilidades, autenticación mediante JSON Web Token (JWT), acceso a base de datos y organización del código siguiendo buenas prácticas de desarrollo en Go.
+
+---
+
+# Objetivo General
+
+Diseñar e implementar la arquitectura base del Sistema de Gestión de Biblioteca Digital mediante programación funcional en Go, garantizando una estructura modular, escalable y fácil de mantener.
+
+# Objetivos Específicos
+
+* Diseñar la arquitectura general del proyecto.
+* Organizar el código utilizando paquetes y responsabilidades independientes.
+* Implementar la autenticación de usuarios mediante JWT.
+* Configurar la conexión con la base de datos.
+* Desarrollar la estructura necesaria para facilitar el trabajo colaborativo entre los integrantes del grupo.
+* Aplicar las buenas prácticas de programación funcional estudiadas durante la asignatura.
+
+---
+
+# Desarrollo del Autónomo 1
+
+En el Autónomo 1 participé en la planificación técnica del proyecto y en el diseño de la arquitectura general del sistema.
+
+Las principales actividades desarrolladas fueron:
+
+* Selección del Sistema de Gestión de Biblioteca Digital como proyecto integrador.
+* Definición de la estructura modular del software.
+* Organización del proyecto utilizando paquetes propios del lenguaje Go.
+* Definición de las responsabilidades de cada módulo.
+* Configuración inicial del proyecto utilizando Go Modules.
+* Selección de las tecnologías necesarias para el desarrollo.
+* Preparación del ambiente de trabajo colaborativo mediante Git y GitHub.
+
+La estructura diseñada permitió separar adecuadamente la lógica de negocio, el acceso a datos y la gestión de las peticiones HTTP, facilitando la integración del trabajo realizado por los demás integrantes del equipo.
+
+---
+
+# Desarrollo del Autónomo 2
+
+Durante el Autónomo 2 desarrollé la infraestructura principal del sistema implementando los componentes fundamentales para el funcionamiento de la aplicación.
+
+Entre las actividades realizadas se destacan:
+
+## Arquitectura del proyecto
+
+Se implementó una arquitectura organizada por capas, utilizando la siguiente estructura:
+
+* Config
+* Database
+* Models
+* Repositories
+* Services
+* Handlers
+* Routes
+* Middleware
+
+Esta organización permite mantener el código desacoplado, reutilizable y fácil de mantener.
+
+## Configuración del sistema
+
+Se implementó la configuración centralizada utilizando archivos `.env`, permitiendo administrar parámetros como:
+
+* Puerto del servidor.
+* Cadena de conexión a la base de datos.
+* Claves de autenticación.
+* Variables de entorno.
+
+## Base de datos
+
+Se configuró la conexión con la base de datos utilizando las librerías correspondientes, permitiendo centralizar el acceso a la información del sistema.
+
+## Modelos
+
+Se estructuraron las entidades principales del proyecto:
+
+* Usuario
+* Libro
+* Préstamo
+* Reserva
+* Descarga
+
+Cada modelo representa una entidad del dominio del sistema y sirve como base para las operaciones realizadas por los servicios.
+
+## Repositorios
+
+Se implementó la capa de acceso a datos mediante repositorios, permitiendo separar la lógica de persistencia de la lógica de negocio.
+
+## Servicios
+
+Se desarrolló la capa de servicios encargada de procesar la lógica del negocio antes de acceder a la base de datos.
+
+## Handlers
+
+Se implementaron los controladores HTTP encargados de recibir las solicitudes del cliente y generar las respuestas correspondientes.
+
+## Middleware
+
+Se incorporó un middleware de autenticación utilizando JSON Web Token (JWT), garantizando que únicamente los usuarios autorizados puedan acceder a determinadas funcionalidades del sistema.
+
+---
+
+# Tecnologías utilizadas
+
+Durante el desarrollo del proyecto se emplearon las siguientes herramientas:
+
+* Go
+* Gin Framework
+* GORM
+* PostgreSQL
+* JSON Web Token (JWT)
+* Git
+* GitHub
+* Visual Studio Code
+
+---
+
+# Aporte Personal al Proyecto
+
+Mi principal aporte consistió en diseñar e implementar la infraestructura técnica sobre la cual se desarrolló el resto del sistema.
+
+Entre las principales contribuciones realizadas se encuentran:
+
+* Diseño de la arquitectura modular del proyecto.
+* Organización del código mediante paquetes.
+* Implementación de la autenticación JWT.
+* Configuración del servidor.
+* Configuración de la base de datos.
+* Desarrollo de la estructura de Models, Services, Repositories y Handlers.
+* Preparación del entorno de desarrollo colaborativo.
+* Organización del repositorio para facilitar la integración del trabajo del equipo.
+
+La arquitectura implementada permitió que los demás integrantes desarrollaran sus respectivos módulos siguiendo una estructura uniforme, mejorando la mantenibilidad y escalabilidad del proyecto.
+
+---
+
+# Dificultades Encontradas
+
+Durante el desarrollo del proyecto se presentaron algunos desafíos técnicos, entre ellos:
+
+* Integración del trabajo realizado por varios desarrolladores.
+* Organización del repositorio mediante ramas de Git.
+* Configuración del entorno de desarrollo.
+* Implementación del mecanismo de autenticación.
+* Coordinación de cambios durante el desarrollo colaborativo.
+
+Cada una de estas dificultades permitió fortalecer el conocimiento sobre el trabajo en equipo y las metodologías de desarrollo de software.
+
+---
+
+# Resultados Obtenidos
+
+Como resultado de las actividades desarrolladas se obtuvo una arquitectura sólida, organizada y preparada para soportar el desarrollo de los diferentes módulos del sistema.
+
+La estructura implementada facilita:
+
+* Escalabilidad.
+* Reutilización del código.
+* Mantenimiento.
+* Integración de nuevas funcionalidades.
+* Seguridad mediante autenticación JWT.
+
+---
+
+# Conclusiones
+
+* La programación funcional en Go permite desarrollar aplicaciones organizadas, eficientes y fáciles de mantener cuando se emplea una arquitectura modular.
+
+* La correcta separación de responsabilidades entre Handlers, Services y Repositories facilita el mantenimiento y mejora la calidad del software.
+
+* El uso de herramientas como Git y GitHub permitió desarrollar el proyecto de manera colaborativa, manteniendo un adecuado control de versiones.
+
+* La implementación de la autenticación mediante JWT incrementó la seguridad del sistema y permitió proteger los recursos del aplicativo.
+
+---
+
+# Evidencias
+
+Como evidencia del trabajo realizado se incluyen:
+
+* Repositorio del proyecto en GitHub.
+* Commits realizados durante el desarrollo.
+* Estructura de carpetas implementada.
+* Código fuente correspondiente al Autónomo 2.
+* Implementación de la arquitectura modular.
+* Configuración del sistema y autenticación mediante JWT.
+
+---
+
+# Trabajo Futuro
+
+Como mejoras futuras se propone:
+
+* Implementar nuevos servicios web para ampliar las funcionalidades del sistema.
+* Incorporar notificaciones automáticas para préstamos y reservas.
+* Integrar mecanismos de recomendación de libros utilizando Inteligencia Artificial.
+* Desarrollar una interfaz web moderna para mejorar la experiencia del usuario.
